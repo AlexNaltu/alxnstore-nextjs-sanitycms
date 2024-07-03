@@ -28,3 +28,26 @@ export const categoryItems = [
     image: "/categories/hoodies.png",
   },
 ];
+
+export const menuLinks = [
+  {
+    href: "/",
+    title: "Home",
+  },
+  {
+    href: "/category/t-shirts",
+    title: "T-Shirts",
+  },
+  {
+    href: "/category/sweatshirts",
+    title: "Sweatshirts",
+  },
+  {
+    href: "/category/hoodies",
+    title: "Hoodies",
+  },
+  {
+    href: "/contact",
+    title: "Contact",
+  },
+];
