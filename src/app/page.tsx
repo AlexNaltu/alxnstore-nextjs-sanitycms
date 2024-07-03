@@ -1,3 +1,4 @@
+import CodeBanner from "@/components/banner/code-banner";
 import HeroCarousel from "@/components/carousel/hero-carousel";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
@@ -26,8 +27,12 @@ export default function Home() {
           </Link>
         ))}
       </div>
-      <h2 className="uppercase mb-4 font-bold tracking-tighter">
+      <h2 className="uppercase mb-4 font-bold tracking-tighter px-1">
         Featured Products
+      </h2>
+      <CodeBanner />
+      <h2 className="uppercase my-4 font-bold tracking-tighter px-1">
+        New Arrivals
       </h2>
     </div>
   );

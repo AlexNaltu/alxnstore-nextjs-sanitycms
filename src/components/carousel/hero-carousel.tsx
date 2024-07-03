@@ -17,7 +17,6 @@ const HeroCarousel = () => {
         showThumbs={false}
         showStatus={false}
         showArrows={false}
-        className="mt-9"
       >
         {heroCarouselImages.map((image, index) => (
           <Image
