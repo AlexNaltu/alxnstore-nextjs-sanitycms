@@ -74,3 +74,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.site_footer {
+  padding-block: 1rem;
+}

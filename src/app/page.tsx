@@ -7,12 +7,11 @@ import { categoryItems } from "@/lib/constants";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
+import Newsletter from "@/components/newsletter/newsletter";
 
 export default function Home() {
   return (
     <div>
-      <TopCarousel />
-      <Navbar />
       <HeroCarousel />
       <h1 className="font-black uppercase text-xs tracking-tighter bg-primary py-2 px-1 text-white w-fit">
         Free shipping for orders over 80$
@@ -61,6 +60,7 @@ export default function Home() {
           className="pl-3"
         />
       </div>
+      <Newsletter />
     </div>
   );
 }
