@@ -10,6 +10,18 @@ export const heroCarouselImages = [
   },
 ];
 
+export const heroCarouselImagesVideo = [
+  {
+    image: "/carousel/hero4.png",
+  },
+  {
+    image: "/carousel/hero5.png",
+  },
+  {
+    image: "/carousel/hero6.png",
+  },
+];
+
 export const categoryItems = [
   {
     href: "/category/t-shirts",
@@ -99,5 +111,17 @@ export const footerLinks = [
   {
     title: "Blog",
     href: "/blog",
+  },
+];
+
+export const carouselItems = [
+  {
+    description: "Use code 'imnotalxn' for 5% off",
+  },
+  {
+    description: "Use code 'imnotalxn' for 5% off",
+  },
+  {
+    description: "Use code 'imnotalxn' for 5% off",
   },
 ];

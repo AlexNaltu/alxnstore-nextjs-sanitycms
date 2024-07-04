@@ -8,7 +8,13 @@ const CodeBanner = () => {
   return (
     <Fade triggerOnce={true} direction="up" duration={1000}>
       <div>
-        <Image src="/banner-code.png" alt="banner" width={1000} height={1000} />
+        <Image
+          src="/banner-code.png"
+          alt="banner"
+          width={1000}
+          height={1000}
+          className="min-[470px]:aspect-video"
+        />
       </div>
     </Fade>
   );

@@ -5,21 +5,7 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css/autoplay";
-
-const carouselItems = [
-  {
-    name: "item1",
-    description: "Use Code imnotalxn for 5% off",
-  },
-  {
-    name: "item2",
-    description: "Use Code imnotalxn for 5% off",
-  },
-  {
-    name: "item2",
-    description: "Use Code imnotalxn for 5% off",
-  },
-];
+import { carouselItems } from "@/lib/constants";
 
 const TopCarousel = () => {
   return (
@@ -35,9 +21,12 @@ const TopCarousel = () => {
         modules={[Autoplay]}
         speed={1500}
       >
-        {carouselItems.map((item) => (
-          <SwiperSlide key={item.name}>
-            <h1 className="uppercase text-xs text-white">{item.description}</h1>
+        {carouselItems.map((item, i) => (
+          <SwiperSlide
+            key={i}
+            className="text-white uppercase text-xs min-[470px]:text-sm"
+          >
+            {item.description}
           </SwiperSlide>
         ))}
       </Swiper>
