@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition } from "sanity";
-import productSchema from "./schemas/product-schema";
+import featuredPlaylistsSchema from "./schemas/playlists/featured-playlists.schema";
+import product from "./schemas/product";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [productSchema],
+  types: [product, featuredPlaylistsSchema],
 };

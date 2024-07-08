@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+// Footer component to display the footer of the site
 const Footer = () => {
   return (
     <footer className="bg-primary site_footer">

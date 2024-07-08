@@ -1,15 +1,19 @@
 import CodeBanner from "@/components/banner/code-banner";
 import HeroCarousel from "@/components/carousel/hero-carousel";
-import TopCarousel from "@/components/carousel/top-carousel";
-import Navbar from "@/components/navbar/navbar";
-import { Button } from "@/components/ui/button";
 import { categoryItems } from "@/lib/constants";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import Newsletter from "@/components/newsletter/newsletter";
+import { getFeaturedPlaylists } from "@/actions/actions";
+import { IPlaylist, IProduct } from "@/types/product-types";
+import FeaturedCarousel from "@/components/carousel/featured-products-carousel";
 
-export default function Home() {
+export const revalidate = 1000;
+
+export default async function Home() {
+  const featuredProducts = await getFeaturedPlaylists();
+
   return (
     <div>
       <HeroCarousel />
@@ -28,9 +32,17 @@ export default function Home() {
           </Link>
         ))}
       </div>
-      <h2 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl">
-        Featured Products
-      </h2>
+
+      <div className="my-3">
+        {featuredProducts.map((item: IPlaylist) => (
+          <section key={item._id}>
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl">
+              {item.title}
+            </h1>
+            <FeaturedCarousel products={item.products} />
+          </section>
+        ))}
+      </div>
       <CodeBanner />
       <h2 className="uppercase my-4 font-bold tracking-tighter px-1 min-[470px]:text-xl">
         New Arrivals
@@ -38,20 +50,19 @@ export default function Home() {
       <div className="bg-primary text-white">
         <div className="pt-4 pb-1 px-3">
           <h1 className="text-2xl min-[470px]:text-3xl">
-            Creative Visuals Hub
+            Custom Design Solutions
           </h1>
           <h4 className="text-lg text-secondary min-[470px]:text-xl">
-            Innovative Design Solutions
+            You dream it, we design it
           </h4>
           <p className="text-xs">
-            Discover captivation designs that blend creativity and functionality
-            seamlessly
+            Do you want a custom t-shirt/hoodie/sweatshirts design? Contact us !
           </p>
           <Link
             href={"/products"}
             className="flex gap-1 items-center mt-3 hover:text-secondary transition-all duration-300 ease-linear min-[470px]:text-lg"
           >
-            Discover <MdOutlineArrowRightAlt size={40} />
+            Contact Us <MdOutlineArrowRightAlt size={40} />
           </Link>
         </div>
         <Image
