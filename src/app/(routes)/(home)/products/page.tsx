@@ -9,6 +9,7 @@ const ProductSPage = () => {
       <Searchbar />
       <ProductFilters />
       <Products />
+      <div></div>
     </div>
   );
 };
