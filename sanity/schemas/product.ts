@@ -78,5 +78,13 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      options: {
+        list: ["T-shirts", "Hoodies", "Sweatshirts",],
+      },
+    }),
   ],
 });

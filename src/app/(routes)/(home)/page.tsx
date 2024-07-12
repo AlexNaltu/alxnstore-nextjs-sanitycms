@@ -5,29 +5,37 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import Newsletter from "@/components/newsletter/newsletter";
-import { getFeaturedPlaylists } from "@/actions/actions";
+import {
+  getFeaturedPlaylists,
+  getNewArrivalsPlaylists,
+  getRandomProducts,
+} from "@/actions/actions";
 import { IPlaylist, IProduct } from "@/types/product-types";
 import FeaturedCarousel from "@/components/carousel/featured-products-carousel";
+import RandomProductsCarousel from "@/components/carousel/random-product-carousel";
 
 export const revalidate = 1000;
 
 export default async function Home() {
   const featuredProducts = await getFeaturedPlaylists();
+  const newArrivalsProducts = await getNewArrivalsPlaylists();
+  const randomProducts = await getRandomProducts();
 
   return (
-    <div>
+    <div className="max-w-[1400px] mx-auto">
       <HeroCarousel />
-      <h1 className="font-black uppercase text-xs tracking-tighter bg-primary py-2 px-1 text-white w-fit">
+      <h1 className="font-black uppercase text-xs tracking-tighter bg-primary py-2 px-1 text-white w-fit sm:text-base lg:text-xl lg:px-3">
         Free shipping for orders over 80$
       </h1>
-      <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3">
+      <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 w-full">
         {categoryItems.map((category) => (
           <Link href={category.href} key={category.href}>
             <Image
               src={category.image}
               alt={category.href}
-              width={300}
+              width={350}
               height={300}
+              className="min-[1300px]:aspect-video object-cover object-center"
             />
           </Link>
         ))}
@@ -36,7 +44,7 @@ export default async function Home() {
       <div className="my-3">
         {featuredProducts.map((item: IPlaylist) => (
           <section key={item._id}>
-            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl">
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl lg:text-3xl">
               {item.title}
             </h1>
             <FeaturedCarousel products={item.products} />
@@ -44,10 +52,17 @@ export default async function Home() {
         ))}
       </div>
       <CodeBanner />
-      <h2 className="uppercase my-4 font-bold tracking-tighter px-1 min-[470px]:text-xl">
-        New Arrivals
-      </h2>
-      <div className="bg-primary text-white">
+      <div className="my-3">
+        {newArrivalsProducts.map((item: IPlaylist) => (
+          <section key={item._id}>
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl lg:text-3xl">
+              {item.title}
+            </h1>
+            <FeaturedCarousel products={item.products} />
+          </section>
+        ))}
+      </div>
+      <div className="bg-black text-white sm:flex">
         <div className="pt-4 pb-1 px-3">
           <h1 className="text-2xl min-[470px]:text-3xl">
             Custom Design Solutions
@@ -65,13 +80,32 @@ export default async function Home() {
             Contact Us <MdOutlineArrowRightAlt size={40} />
           </Link>
         </div>
-        <Image
-          src="/design-img.png"
-          alt="banner"
-          width={1000}
-          height={1000}
-          className="pl-3 min-[470px]:aspect-video object-cover object-top"
-        />
+        <div className="lg:flex">
+          <Image
+            src="/design-img.png"
+            alt="banner"
+            width={500}
+            height={500}
+            className="pl-3 min-[470px]:aspect-video object-cover object-top sm:max-w-[350px]"
+          />
+          <Image
+            src="/design-img.png"
+            alt="banner"
+            width={500}
+            height={500}
+            className="hidden lg:inline-flex aspect-video object-cover object-top max-w-[350px] pl-3"
+          />
+        </div>
+      </div>
+      <div className="py-3 bg-black">
+        {randomProducts.map((item: IPlaylist) => (
+          <section key={item._id}>
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl">
+              {item.title}
+            </h1>
+            <RandomProductsCarousel products={item.products} />
+          </section>
+        ))}
       </div>
       <Newsletter />
     </div>

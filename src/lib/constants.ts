@@ -22,13 +22,25 @@ export const heroCarouselImagesVideo = [
   },
 ];
 
+export const heroCarouselImagesLg = [
+  {
+    image: "/carousel/hero7.png",
+  },
+  {
+    image: "/carousel/hero8.png",
+  },
+  {
+    image: "/carousel/hero9.png",
+  },
+];
+
 export const categoryItems = [
   {
     href: "/category/t-shirts",
     image: "/categories/tshirts.png",
   },
   {
-    href: "/category/best-sellers",
+    href: "/products",
     image: "/categories/bestsellers.png",
   },
   {
@@ -123,5 +135,23 @@ export const carouselItems = [
   },
   {
     description: "Use code 'imnotalxn' for 5% off",
+  },
+  {
+    description: "Use code 'imnotalxn' for 5% off",
+  },
+];
+
+export const filterItems = [
+  {
+    title: "T-Shirts",
+    href: "/category/t-shirts",
+  },
+  {
+    title: "Sweatshirts",
+    href: "/category/sweatshirts",
+  },
+  {
+    title: "Hoodies",
+    href: "/category/hoodies",
   },
 ];

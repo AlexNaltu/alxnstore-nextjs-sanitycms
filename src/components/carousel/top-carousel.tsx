@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +8,7 @@ import { carouselItems } from "@/lib/constants";
 
 const TopCarousel = () => {
   return (
-    <div className="bg-primary py-2 text-center">
+    <div className="bg-primary py-2 text-center max-w-[1400px] min-[1400px]:mx-auto ">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -20,6 +19,14 @@ const TopCarousel = () => {
         }}
         modules={[Autoplay]}
         speed={1500}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
       >
         {carouselItems.map((item, i) => (
           <SwiperSlide

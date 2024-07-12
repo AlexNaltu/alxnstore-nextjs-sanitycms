@@ -8,7 +8,6 @@ export interface IProduct {
   _id: string;
   name: string;
   images: string[];
-  price: number;
   description: string;
   thumbnail: string;
   sizes: ISize[];
@@ -16,7 +15,7 @@ export interface IProduct {
 
 export interface ISize {
   size: string;
-  price: string;
+  price: number;
   colors: string[];
   _key: string;
 }

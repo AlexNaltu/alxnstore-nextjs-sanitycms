@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 
-const FeaturedCarousel = ({ products }: any) => {
+const RandomProductsCarousel = ({ products }: any) => {
   return (
     <>
       <Swiper
@@ -42,15 +42,15 @@ const FeaturedCarousel = ({ products }: any) => {
                   className="object-cover "
                 />
               </CardHeader>
-              <CardContent className="tracking-tighter font-bold px-1">
+              <CardContent className="tracking-tighter font-bold px-1 bg-black ">
                 <div>
-                  <h1 className="text-sm lg:text-lg line-clamp-1">
+                  <h1 className="text-sm text-white lg:text-lg line-clamp-1">
                     {product.name}
                   </h1>
                   <div>
                     {product.sizes.length > 0 && (
                       <div key={product.sizes[0]._key}>
-                        <p className="text-[6px]">
+                        <p className="text-[6px] text-white">
                           from
                           <span className="text-sm px-1">
                             {formatPriceInEUR(product.sizes[0].price)}
@@ -75,4 +75,4 @@ const FeaturedCarousel = ({ products }: any) => {
   );
 };
 
-export default FeaturedCarousel;
+export default RandomProductsCarousel;

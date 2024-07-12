@@ -13,7 +13,14 @@ const CodeBanner = () => {
           alt="banner"
           width={1000}
           height={1000}
-          className="min-[470px]:aspect-video"
+          className="min-[470px]:aspect-video sm:hidden object-cover object-center"
+        />
+        <Image
+          src="/banner-code2.png"
+          alt="banner"
+          width={2000}
+          height={2000}
+          className="hidden sm:block object-cover object-center "
         />
       </div>
     </Fade>

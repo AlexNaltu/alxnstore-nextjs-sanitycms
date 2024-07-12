@@ -16,13 +16,14 @@ import { Input } from "../ui/input";
 import Link from "next/link";
 import { menuLinks } from "@/lib/constants";
 import Image from "next/image";
+import Searchbar from "../searchbar/searchbar";
 
 const MobileMenu = () => {
   return (
     <>
       <Drawer>
         <DrawerTrigger>
-          <LuMenu size={25} />
+          <LuMenu size={33} />
         </DrawerTrigger>
         <DrawerContent className="px-3">
           <DrawerHeader>
@@ -30,7 +31,7 @@ const MobileMenu = () => {
               <IoCloseSharp size={30} />
               <p>Close</p>
             </DrawerClose>
-            <Input placeholder="Search Products..." className="rounded-none" />
+            <Searchbar />
             <div className="flex flex-col text-2xl mt-5">
               {menuLinks.map((link) => (
                 <Link
