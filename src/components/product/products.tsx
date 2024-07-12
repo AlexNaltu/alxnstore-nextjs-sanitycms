@@ -8,8 +8,7 @@ import { Card } from "../ui/card";
 import ProductCard from "./product-card";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const itemsPerPage = 2;
-const data = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+const itemsPerPage = 20;
 
 interface PageClickData {
   selectedPage: number;
@@ -37,20 +36,20 @@ const Products = () => {
   const paginatedData = products.slice(offset, offset + itemsPerPage);
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-2 mb-2 mt-7 gap-2">
+      <div className="grid grid-cols-2 mb-2 mt-7 gap-2 min-[470px]:grid-cols-3">
         {paginatedData.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
       <ReactPaginate
-        pageCount={Math.ceil(data.length / itemsPerPage)}
+        pageCount={Math.ceil(products.length / itemsPerPage)}
         pageRangeDisplayed={5}
         marginPagesDisplayed={2}
         onPageChange={handlePageClick}
         containerClassName={"pagination"}
         activeClassName={"active"}
-        nextLabel={<MdKeyboardArrowRight size={32} />}
-        previousLabel={<MdKeyboardArrowLeft size={32} />}
+        nextLabel={<MdKeyboardArrowRight size={25} />}
+        previousLabel={<MdKeyboardArrowLeft size={25} />}
         breakLabel={"..."}
       />
     </div>
