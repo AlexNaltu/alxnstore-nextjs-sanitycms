@@ -1,0 +1,40 @@
+import { IProduct } from "@/types/product-types";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { Button } from "../ui/button";
+import { formatPriceInEUR } from "@/lib/formatPrice";
+
+interface ResultsProps {
+  result: IProduct;
+}
+
+const SearchResults = ({ result }: ResultsProps) => {
+  return (
+    <div className="w-full bg-white hover:bg-secondary transition-all duration-500 ease-in-out">
+      <Link
+        href={`/products/${result._id}`}
+        className="flex items-center justify-between"
+      >
+        <Image src={result.thumbnail} alt="/" width={150} height={150} />
+        <div className="flex flex-col items-end px-2">
+          <h1 className="text-sm lg:text-lg line-clamp-1">{result.name}</h1>
+          <div>
+            {result.sizes.length > 0 && (
+              <div key={result.sizes[0]._key}>
+                <p className="text-[6px]">
+                  from
+                  <span className="text-sm px-1">
+                    {formatPriceInEUR(result.sizes[0].price)}
+                  </span>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+export default SearchResults;

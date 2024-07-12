@@ -36,7 +36,7 @@ const Products = () => {
   const paginatedData = products.slice(offset, offset + itemsPerPage);
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-2 mb-2 mt-7 gap-2 min-[470px]:grid-cols-3">
+      <div className="grid grid-cols-2 mb-2 mt-7 gap-2 min-[470px]:grid-cols-3 min-[950px]:grid-cols-4">
         {paginatedData.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

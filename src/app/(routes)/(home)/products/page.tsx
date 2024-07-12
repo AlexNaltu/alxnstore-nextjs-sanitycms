@@ -11,10 +11,10 @@ const ProductSPage = () => {
       <ProductFilters />
       <Products />
       <div className="my-6 px-2">
-        <h1 className="tracking-tighter text-2xl min-[470px]:text-3xl font-black">
+        <h1 className="tracking-tighter text-2xl min-[470px]:text-3xl font-black md:text-4xl lg:text-5xl">
           Shipping and Delivery
         </h1>
-        <ul className="font-sans text-xs flex flex-col gap-1 mt-3">
+        <ul className="font-sans text-xs flex flex-col gap-1 mt-3 md:text-sm lg:text-lg">
           <li>Orders are processed within 1-2 business days</li>
           <li>
             Shipping costs are calculated based on the first item and any
