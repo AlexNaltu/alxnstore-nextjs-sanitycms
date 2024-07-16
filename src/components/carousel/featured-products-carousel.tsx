@@ -8,7 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 
-const FeaturedCarousel = ({ products }: any) => {
+interface IFeaturedCarousel {
+  products: IProduct[];
+}
+
+const FeaturedCarousel = ({ products }: IFeaturedCarousel) => {
   return (
     <>
       <Swiper
@@ -34,13 +38,15 @@ const FeaturedCarousel = ({ products }: any) => {
           <SwiperSlide key={product._id}>
             <Card className="rounded-none border-none custom-shadow mb-2">
               <CardHeader>
-                <Image
-                  src={product.thumbnail}
-                  alt={product.name}
-                  width={1000}
-                  height={1000}
-                  className="object-cover "
-                />
+                <Link href={`/products/${product.slug}`}>
+                  <Image
+                    src={product.thumbnail}
+                    alt={product.name}
+                    width={1000}
+                    height={1000}
+                    className="object-cover "
+                  />
+                </Link>
               </CardHeader>
               <CardContent className="tracking-tighter font-bold px-1">
                 <div>
@@ -57,7 +63,7 @@ const FeaturedCarousel = ({ products }: any) => {
                           </span>
                         </p>
                         <Link
-                          href={`/products/${product._id}`}
+                          href={`/product/${product.slug}`}
                           className="text-xs text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
                         >
                           Choose options

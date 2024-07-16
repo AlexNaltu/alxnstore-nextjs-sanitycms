@@ -57,7 +57,7 @@ const RandomProductsCarousel = ({ products }: any) => {
                           </span>
                         </p>
                         <Link
-                          href={`/products/${product._id}`}
+                          href={`/products/${product.slug}`}
                           className="text-xs text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
                         >
                           Choose options

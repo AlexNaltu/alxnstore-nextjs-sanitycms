@@ -10,6 +10,7 @@ export default defineType({
       title: "Name",
       type: "string",
     }),
+
     defineField({
       name: "description",
       title: "Description",
@@ -83,7 +84,15 @@ export default defineType({
       title: "Category",
       type: "string",
       options: {
-        list: ["T-shirts", "Hoodies", "Sweatshirts",],
+        list: ["T-shirts", "Hoodies", "Sweatshirts"],
+      },
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "name",
       },
     }),
   ],

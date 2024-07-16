@@ -1,5 +1,10 @@
 import { groq } from "next-sanity";
 import { client } from "../../sanity/lib/client";
+import { IProduct } from "@/types/product-types";
+
+interface SlugProps {
+  slug: string;
+}
 
 export const getFeaturedPlaylists = async () => {
   try {
@@ -10,6 +15,7 @@ export const getFeaturedPlaylists = async () => {
             products[]->{
               _id,
               name,
+              "slug": slug.current,
               images,
               description,
               "thumbnail": thumbnail.asset->url,
@@ -17,7 +23,8 @@ export const getFeaturedPlaylists = async () => {
               size,
               price,
               colors,
-              _key
+              _key,
+
               }
             }
             }`);
@@ -37,6 +44,7 @@ export const getNewArrivalsPlaylists = async () => {
             products[]->{
               _id,
               name,
+              "slug": slug.current,
               images,
               description,
               "thumbnail": thumbnail.asset->url,
@@ -44,7 +52,7 @@ export const getNewArrivalsPlaylists = async () => {
               size,
               price,
               colors,
-              _key
+              _key,
               }
             }
             }`);
@@ -64,6 +72,7 @@ export const getRandomProducts = async () => {
             products[]->{
               _id,
               name,
+              "slug": slug.current,
               images,
               description,
               "thumbnail": thumbnail.asset->url,
@@ -71,7 +80,7 @@ export const getRandomProducts = async () => {
               size,
               price,
               colors,
-              _key
+              _key,
               }
             }
             }`);
@@ -87,6 +96,7 @@ export const getAllProducts = async () => {
     const products = await client.fetch(groq`*[_type == "product"] {
        _id,
        name,
+      "slug": slug.current,
        images,
        description,
        "thumbnail": thumbnail.asset->url,
@@ -94,11 +104,37 @@ export const getAllProducts = async () => {
          size,
          price,
          colors,
-         _key
+         _key,
+
        }
     }`);
 
     return products;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const getProductBySlug = async ({ slug }: SlugProps) => {
+  try {
+    const product: IProduct = await client.fetch(
+      groq`*[_type == "product" && slug.current == "${slug}"][0] {
+      _id,
+      name,
+      "images": images[].asset->url,
+      description,
+      "slug": slug.current,
+      "thumbnail": thumbnail.asset->url,
+      "sizes": sizes[]{
+        size, 
+        price,
+        colors,
+        _key,  
+      }
+    }`
+    );
+
+    return product;
   } catch (error: any) {
     throw new Error(error.message);
   }
