@@ -155,3 +155,22 @@ export const filterItems = [
     href: "/category/hoodies",
   },
 ];
+
+export const itemDescription = [
+  {
+    name: "-Length",
+    value: "28 inches",
+  },
+  {
+    name: "-Fit",
+    value: "Regular",
+  },
+  {
+    name: "-Neckline",
+    value: "a round neck",
+  },
+  {
+    name: "-Printed",
+    value: "on the front",
+  },
+];

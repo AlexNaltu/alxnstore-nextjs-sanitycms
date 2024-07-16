@@ -1,19 +1,44 @@
 "use client";
 import { getProductBySlug } from "@/actions/actions";
-import { IProduct } from "@/types/product-types";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { itemDescription } from "@/lib/constants";
+import { formatPriceInEUR } from "@/lib/formatPrice";
+import { IProduct, ISize } from "@/types/product-types";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { IoShirt } from "react-icons/io5";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import Newsletter from "@/components/newsletter/newsletter";
+import { MdFavorite } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
 
 const ProductPage = ({ params }: { params: { slug: string } }) => {
+  const [quantity, setQuantity] = useState<number>(1);
   const [product, setProduct] = useState<IProduct>();
   const [selectedImage, setSelectedImage] = useState<string>("");
+  const [selectedProduct, setSelectedProduct] = useState<ISize>();
+
+  const handleProductChange = (variant: ISize) => {
+    setSelectedProduct(variant);
+    setQuantity(1);
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
       const product = await getProductBySlug({ slug: params.slug });
       setProduct(product);
     };
+
+    if (product?.images.length! > 0) {
+      setSelectedImage(product?.images[0]!);
+    }
 
     fetchProduct();
   }, [params.slug]);
@@ -22,10 +47,25 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
     if (product?.images.length! > 0) {
       setSelectedImage(product?.images[0]!);
     }
+
+    if (product) {
+      setSelectedProduct(product.sizes[0]);
+    }
   }, [product]);
 
+  const item = {
+    id: product?._id,
+    name: product?.name,
+    thumbnail: product?.thumbnail,
+    price: selectedProduct?.price,
+    quantity: quantity,
+    url: `/products/${product?.slug}`,
+    images: product?.images,
+    size: selectedProduct?.size,
+  };
+
   return (
-    <div className="tracking-tighters">
+    <div className="tracking-tighter px-2">
       <Image
         src={selectedImage}
         alt="/"
@@ -47,15 +87,82 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="flex flex-col gap-2 my-2">
         <div>
-          <h1 className="font-bold uppercase text-xl">{product?.name}</h1>
-          <Link href="/cart" className="font-sans text-sm underline">
-            More product details{" "}
-          </Link>
+          <div>
+            <h1 className="font-bold uppercase text-xl">{product?.name}</h1>
+            <Link href="/cart" className="font-sans text-sm underline">
+              More product details{" "}
+            </Link>
+          </div>
+          <div>
+            <p>price {formatPriceInEUR(selectedProduct?.price!)}</p>
+            <p className="font-sans text-xs underline">
+              Prices includes VAT,
+              <br />
+              not shipping fees
+            </p>
+          </div>
         </div>
-        <div></div>
+        <div className="flex gap-2">
+          {product?.sizes.map((size, i) => (
+            <Button
+              key={i}
+              className="border-black border-2 h-10 bg-transparent"
+              onClick={() => handleProductChange(size)}
+            >
+              {size.size}
+            </Button>
+          ))}
+        </div>
+        <div className="flex items-center">
+          <label> Quantity</label>
+          <Input
+            type="number"
+            min={"1"}
+            max={"2"}
+            value={quantity}
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
+            className="w-fit"
+          />
+        </div>
+        <div className="flex items-center gap-3 max-w-sm">
+          <MdFavorite
+            size={38}
+            className="border-2 border-black rounded-sm text-red-700 h-8 w-10"
+          />
+          <Button className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full">
+            <FaShoppingCart size={20} /> Add to Cart
+          </Button>
+        </div>
+        <div>
+          <div className="flex items-end gap-2">
+            <IoShirt size={35} />
+            <p>Item Description</p>
+          </div>
+          <div>
+            {itemDescription.map((item) => (
+              <div key={item.name}>
+                <p className="font-sans text-sm">
+                  {item.name}: {""} {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="decoration-0">
+                Detailed Information
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          <h2 className="uppercase font-black mt-5">More From This Category</h2>
+        </div>
       </div>
+      <Newsletter />
     </div>
   );
 };

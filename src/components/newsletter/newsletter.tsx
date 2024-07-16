@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const Newsletter = () => {
   return (
-    <div className="my-8 px-2 tracking-tighter sm:my-10">
+    <div className="my-8 tracking-tighter sm:my-10">
       <h1 className="uppercase font-extrabold text-2xl min-[470px]:text-3xl sm:text-4xl">
         Newsletter
       </h1>
