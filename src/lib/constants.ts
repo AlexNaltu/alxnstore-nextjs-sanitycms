@@ -174,3 +174,52 @@ export const itemDescription = [
     value: "on the front",
   },
 ];
+
+export const detailedInformation = [
+  {
+    name: "Material",
+    details: {
+      item1: "- 100% ring-spun cotton",
+      item2: "- Lightweight fabric (4.5 oz/yd² or 153 g/m²)",
+    },
+  },
+  {
+    name: "Design",
+    details: {
+      item1: "- Unisex t-shirt",
+      item2: "- Classic fit with crew neckline",
+      item3:
+        "- Knit in one piece using tubular knit, eliminating side seams to reduce fabric waste and enhance appearance",
+    },
+  },
+  {
+    name: "Comfort",
+    details: {
+      item1: "- Pearlized, tear-away label for total wearing comfort",
+      item2: "- Ribbed knit collar for high elasticity and shape retention",
+    },
+  },
+  {
+    name: "Durability",
+    details: {
+      item1: "- Shoulder tape to stabilize the back and prevent stretching",
+      item2:
+        "- Made from specially spun fibers for a durable, smooth fabric perfect for printing",
+    },
+  },
+  {
+    name: "Ethical Production",
+    details: {
+      item1: "- Made from ethically grown and harvested US cotton",
+      item2: "- Oeko-Tex certified for safety and quality assurance",
+    },
+  },
+  {
+    name: "Fabric Blends",
+    details: {
+      item1: "- Heather colors: 35% ring-spun cotton, 65% polyester",
+      item2: "- Sport Grey and Antique colors: 90% cotton, 10% polyester",
+      item3: "- Graphite Heather: 50% ring-spun cotton, 50% polyester",
+    },
+  },
+];
