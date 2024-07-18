@@ -6,6 +6,10 @@ interface SlugProps {
   slug: string;
 }
 
+interface CategoryProps {
+  category: string;
+}
+
 export const getFeaturedPlaylists = async () => {
   try {
     const playlist =
@@ -123,6 +127,7 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
       name,
       "images": images[].asset->url,
       description,
+      category,
       "slug": slug.current,
       "thumbnail": thumbnail.asset->url,
       "sizes": sizes[]{
@@ -132,6 +137,32 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
         _key,  
       }
     }`
+    );
+
+    return product;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const getRelatedProducts = async (category: string) => {
+  try {
+    const product: IProduct[] = await client.fetch(
+      groq`*[_type == "product" && category == "${category}"][0...8] {
+       _id,
+       name,
+       "images": images[].asset->url,
+       description,
+       category,
+       "slug": slug.current,
+       "thumbnail": thumbnail.asset->url,
+       "sizes": sizes[]{
+         size, 
+         price,
+         colors,
+         _key,  
+       }
+      }`
     );
 
     return product;

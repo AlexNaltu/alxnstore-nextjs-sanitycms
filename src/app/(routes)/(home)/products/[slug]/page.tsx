@@ -1,5 +1,5 @@
 "use client";
-import { getProductBySlug } from "@/actions/actions";
+import { getProductBySlug, getRelatedProducts } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { detailedInformation, itemDescription } from "@/lib/constants";
@@ -18,12 +18,15 @@ import {
 import Newsletter from "@/components/newsletter/newsletter";
 import { MdFavorite } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const ProductPage = ({ params }: { params: { slug: string } }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [product, setProduct] = useState<IProduct>();
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<ISize>();
+  const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
 
   const handleProductChange = (variant: ISize) => {
     setSelectedProduct(variant);
@@ -34,6 +37,10 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
     const fetchProduct = async () => {
       const product = await getProductBySlug({ slug: params.slug });
       setProduct(product);
+
+      const category = product?.category;
+      const related_products = await getRelatedProducts(category!);
+      setRelatedProducts(related_products);
     };
 
     if (product?.images.length! > 0) {
@@ -98,6 +105,7 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
               <h1 className="font-bold uppercase text-xl sm:text-2xl md:text-4xl ">
                 {product?.name}
               </h1>
+              <p>{product?.category}</p>
               <Link
                 href="/cart"
                 className="font-sans text-sm underline md:text-base"
@@ -133,7 +141,7 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
             <Input
               type="number"
               min={"1"}
-              max={"2"}
+              max={"99"}
               value={quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value))}
               className="w-fit"
@@ -162,6 +170,10 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
                 </div>
               ))}
             </div>
+            <div className="mt-4 flex flex-col gap-3 max-w-sm">
+              <p className="text-xl md:text-2xl">Description:</p>
+              <p className="text-sm md:text-base">{product?.description}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -189,6 +201,70 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
       <h2 className="uppercase font-black mt-5 sm:text-2xl md:text-4xl">
         More From This Category
       </h2>
+
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={10}
+        loop={true}
+        breakpoints={{
+          470: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 10,
+          },
+        }}
+      >
+        {relatedProducts.map((product: IProduct) => (
+          <SwiperSlide key={product._id}>
+            <Card className="rounded-none border-none custom-shadow my-3">
+              <CardHeader>
+                <Link href={`/products/${product.slug}`}>
+                  <Image
+                    src={product.thumbnail}
+                    alt={product.name}
+                    width={1000}
+                    height={1000}
+                    className="object-cover "
+                  />
+                </Link>
+              </CardHeader>
+              <CardContent className="tracking-tighter font-bold px-1">
+                <div>
+                  <h1 className="text-sm lg:text-lg line-clamp-1">
+                    {product.name}
+                  </h1>
+                  <div>
+                    {product.sizes.length > 0 && (
+                      <div key={product.sizes[0]._key}>
+                        <p className="text-[6px]">
+                          from
+                          <span className="text-sm px-1">
+                            {formatPriceInEUR(product.sizes[0].price)}
+                          </span>
+                        </p>
+                        <Link
+                          href={`/product/${product.slug}`}
+                          className="text-xs text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
+                        >
+                          Choose options
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
       <Newsletter />
     </div>
   );

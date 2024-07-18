@@ -9,6 +9,7 @@ export interface IProduct {
   name: string;
   images: string[];
   description: string;
+  category: string;
   thumbnail: string;
   sizes: ISize[];
   slug: string;
