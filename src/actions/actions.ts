@@ -6,10 +6,6 @@ interface SlugProps {
   slug: string;
 }
 
-interface CategoryProps {
-  category: string;
-}
-
 export const getFeaturedPlaylists = async () => {
   try {
     const playlist =
@@ -26,7 +22,6 @@ export const getFeaturedPlaylists = async () => {
               "sizes": sizes[]{
               size,
               price,
-              colors,
               _key,
 
               }
@@ -83,7 +78,6 @@ export const getRandomProducts = async () => {
               "sizes": sizes[]{
               size,
               price,
-              colors,
               _key,
               }
             }
@@ -107,7 +101,6 @@ export const getAllProducts = async () => {
        "sizes": sizes[]{
          size,
          price,
-         colors,
          _key,
 
        }
@@ -133,9 +126,9 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
       "sizes": sizes[]{
         size, 
         price,
-        colors,
         _key,  
-      }
+      },
+      colors
     }`
     );
 
@@ -159,9 +152,9 @@ export const getRelatedProducts = async (category: string) => {
        "sizes": sizes[]{
          size, 
          price,
-         colors,
          _key,  
-       }
+       },
+       colors
       }`
     );
 

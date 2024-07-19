@@ -20,6 +20,7 @@ import { MdFavorite } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const ProductPage = ({ params }: { params: { slug: string } }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -27,6 +28,9 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<ISize>();
   const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string>(
+    product?.colors[0] || ""
+  );
 
   const handleProductChange = (variant: ISize) => {
     setSelectedProduct(variant);
@@ -69,7 +73,22 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
     url: `/products/${product?.slug}`,
     images: product?.images,
     size: selectedProduct?.size,
+    color: selectedColor,
   };
+
+  function getColorStyle(color: string) {
+    switch (color) {
+      case "red":
+        return "bg-red-500";
+      case "blue":
+        return "bg-blue-500";
+      case "green":
+        return "bg-green-500";
+
+      default:
+        return "bg-gray-500";
+    }
+  }
 
   return (
     <div className="tracking-tighter px-2 max-w-[1400px] mx-auto">
@@ -105,7 +124,6 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
               <h1 className="font-bold uppercase text-xl sm:text-2xl md:text-4xl ">
                 {product?.name}
               </h1>
-              <p>{product?.category}</p>
               <Link
                 href="/cart"
                 className="font-sans text-sm underline md:text-base"
@@ -125,16 +143,34 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
               </p>
             </div>
           </div>
-          <div className="flex gap-2 md:gap-4">
-            {product?.sizes.map((size, i) => (
-              <Button
-                key={i}
-                className="border-black border-2 h-10 bg-transparent"
-                onClick={() => handleProductChange(size)}
-              >
-                {size.size}
-              </Button>
-            ))}
+          <div className="flex flex-col gap-2 md:gap-4">
+            <div className="flex gap-2 md:gap-4">
+              {product?.sizes.map((size, i) => (
+                <div>
+                  <Button
+                    key={i}
+                    className="border-black border-2 h-10 bg-transparent"
+                    onClick={() => handleProductChange(size)}
+                  >
+                    {size.size}
+                  </Button>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-2 md:gap-4">
+              {product?.colors.map((color, i) => (
+                <div
+                  key={i}
+                  onClick={() => setSelectedColor(color)}
+                  className={cn(
+                    getColorStyle(color),
+                    selectedColor === color
+                      ? "border-4 border-black rounded-full w-7 h-7 cursor-pointer"
+                      : "rounded-full w-7 h-7 cursor-pointer"
+                  )}
+                ></div>
+              ))}
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <label> Quantity</label>

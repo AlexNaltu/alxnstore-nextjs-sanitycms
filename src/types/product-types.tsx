@@ -10,6 +10,7 @@ export interface IProduct {
   images: string[];
   description: string;
   category: string;
+  colors: string[];
   thumbnail: string;
   sizes: ISize[];
   slug: string;
@@ -18,6 +19,5 @@ export interface IProduct {
 export interface ISize {
   size: string;
   price: number;
-  colors: string[];
   _key: string;
 }

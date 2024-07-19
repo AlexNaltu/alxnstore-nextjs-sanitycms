@@ -10,12 +10,16 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const itemsPerPage = 20;
 
+interface Props {
+  searchParams: { [key: string]: string | undefined };
+}
+
 interface PageClickData {
   selectedPage: number;
   selected: number;
 }
 
-const Products = () => {
+const Products = ({ searchParams }: Props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [products, setProducts] = useState<IProduct[]>([]);
 

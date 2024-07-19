@@ -57,24 +57,6 @@ export default defineType({
               title: "Price",
               type: "number",
             }),
-            defineField({
-              name: "colors",
-              title: "Colors",
-              type: "array",
-              of: [
-                {
-                  type: "string",
-                  title: "Color",
-                  options: {
-                    list: [
-                      { title: "Red", value: "red" },
-                      { title: "Blue", value: "blue" },
-                      { title: "Green", value: "green" },
-                    ],
-                  },
-                },
-              ],
-            }),
           ],
         },
       ],
@@ -86,6 +68,24 @@ export default defineType({
       options: {
         list: ["T-shirts", "Hoodies", "Sweatshirts"],
       },
+    }),
+    defineField({
+      name: "colors",
+      title: "Colors",
+      type: "array",
+      of: [
+        {
+          type: "string",
+          title: "Color",
+          options: {
+            list: [
+              { title: "Red", value: "red" },
+              { title: "Blue", value: "blue" },
+              { title: "Green", value: "green" },
+            ],
+          },
+        },
+      ],
     }),
     defineField({
       name: "slug",

@@ -4,12 +4,15 @@ import Products from "@/components/product/products";
 import Searchbar from "@/components/searchbar/searchbar";
 import React from "react";
 
-const ProductSPage = () => {
+interface Props {
+  searchParams: { [key: string]: string | undefined };
+}
+
+const ProductSPage = ({ searchParams }: Props) => {
   return (
     <div className="max-w-[1400px] mx-auto px-1 mt-3">
       <Searchbar />
-      <ProductFilters />
-      <Products />
+      <Products searchParams={searchParams} />
       <div className="my-6 px-2">
         <h1 className="tracking-tighter text-2xl min-[470px]:text-3xl font-black md:text-4xl lg:text-5xl">
           Shipping and Delivery
