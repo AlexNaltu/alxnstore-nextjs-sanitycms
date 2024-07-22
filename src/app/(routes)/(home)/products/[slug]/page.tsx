@@ -21,22 +21,28 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/shoppingSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductPage = ({ params }: { params: { slug: string } }) => {
+  // quantity, product, image, selectedProduct, relatedProducts, selectedColor state
   const [quantity, setQuantity] = useState<number>(1);
   const [product, setProduct] = useState<IProduct>();
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<ISize>();
   const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
   const [selectedColor, setSelectedColor] = useState<string>(
-    product?.colors[0] || ""
+    product?.colors[0]!
   );
 
+  //size handler
   const handleProductChange = (variant: ISize) => {
     setSelectedProduct(variant);
     setQuantity(1);
   };
 
+  //fetch product by slug and related products
   useEffect(() => {
     const fetchProduct = async () => {
       const product = await getProductBySlug({ slug: params.slug });
@@ -64,6 +70,8 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
     }
   }, [product]);
 
+  const dispatch = useDispatch();
+
   const item = {
     id: product?._id,
     name: product?.name,
@@ -76,6 +84,7 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
     color: selectedColor,
   };
 
+  //get color style
   function getColorStyle(color: string) {
     switch (color) {
       case "red":
@@ -158,9 +167,9 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
               ))}
             </div>
             <div className="flex gap-2 md:gap-4">
-              {product?.colors.map((color, i) => (
+              {product?.colors.map((color) => (
                 <div
-                  key={i}
+                  key={color}
                   onClick={() => setSelectedColor(color)}
                   className={cn(
                     getColorStyle(color),
@@ -168,6 +177,8 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
                       ? "border-4 border-black rounded-full w-7 h-7 cursor-pointer"
                       : "rounded-full w-7 h-7 cursor-pointer"
                   )}
+                  role="button"
+                  tabIndex={0}
                 ></div>
               ))}
             </div>
@@ -188,7 +199,13 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
               size={38}
               className="border-2 border-black rounded-sm text-red-700 h-8 w-10"
             />
-            <Button className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full">
+            <Button
+              className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full"
+              onClick={() =>
+                dispatch(addToCart(item)) &&
+                toast.success("Product added to cart")
+              }
+            >
               <FaShoppingCart size={20} /> Add to Cart
             </Button>
           </div>
@@ -302,6 +319,7 @@ const ProductPage = ({ params }: { params: { slug: string } }) => {
       </Swiper>
 
       <Newsletter />
+      <Toaster position="bottom-right" />
     </div>
   );
 };

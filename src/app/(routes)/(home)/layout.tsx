@@ -4,6 +4,7 @@ import "./globals.css";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
+import ReduxProvider from "@/providers/redux-provider";
 
 const inter = Bakbak_One({ subsets: ["latin"], weight: "400" });
 
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen w-full`}>
-        <TopCarousel />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ReduxProvider>
+          <TopCarousel />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

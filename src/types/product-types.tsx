@@ -14,6 +14,7 @@ export interface IProduct {
   thumbnail: string;
   sizes: ISize[];
   slug: string;
+  quantity: number;
 }
 
 export interface ISize {

@@ -6,6 +6,7 @@ import { LuMenu } from "react-icons/lu";
 import MobileMenu from "./mobile-menu";
 import Link from "next/link";
 import Searchbar from "../searchbar/searchbar";
+import ShoppingCart from "../cart/ShoppingCart";
 
 const Navbar = () => {
   return (

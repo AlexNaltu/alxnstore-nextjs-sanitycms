@@ -7,7 +7,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
-import { filterItems } from "@/lib/constants";
 
 const ProductFilters = () => {
   return (
