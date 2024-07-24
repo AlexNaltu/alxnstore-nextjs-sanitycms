@@ -40,8 +40,8 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "sizes",
-      title: "Sizes",
+      name: "variants",
+      title: "Variants",
       type: "array",
       of: [
         {
@@ -51,11 +51,19 @@ export default defineType({
               name: "size",
               title: "Size",
               type: "string",
+              options: {
+                list: ["S", "M", "L", "XL"],
+              },
             }),
             defineField({
               name: "price",
               title: "Price",
               type: "number",
+            }),
+            defineField({
+              name: "variant_id",
+              title: "Variant ID",
+              type: "string",
             }),
           ],
         },

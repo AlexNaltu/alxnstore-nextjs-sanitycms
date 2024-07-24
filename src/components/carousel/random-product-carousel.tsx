@@ -48,12 +48,12 @@ const RandomProductsCarousel = ({ products }: any) => {
                     {product.name}
                   </h1>
                   <div>
-                    {product.sizes.length > 0 && (
-                      <div key={product.sizes[0]._key}>
+                    {product.variants.length > 0 && (
+                      <div key={product.variants[0].variant_id}>
                         <p className="text-[6px] text-white">
                           from
                           <span className="text-sm px-1">
-                            {formatPriceInEUR(product.sizes[0].price)}
+                            {formatPriceInEUR(product.variants[0].price)}
                           </span>
                         </p>
                         <Link

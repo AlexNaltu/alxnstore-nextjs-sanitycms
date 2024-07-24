@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, WebStorage } from "redux-persist";
-
+import { persistStore, persistReducer } from "redux-persist";
 import {
   FLUSH,
   PAUSE,
@@ -9,14 +8,14 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist/es/constants";
-
 import shoppingReducer from "./shoppingSlice";
+import { WebStorage } from "redux-persist";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-// Returns a mock storage interface if window is not defined (i.e., on the server), otherwise, it uses createWebStorage.
+// The createPersistStore function is used to create a WebStorage object that will be used to persist the Redux store.
+// The function checks if the code is running on the server or the client and returns the appropriate WebStorage object.
 export function createPersistStore(): WebStorage {
   const isServer = typeof window === "undefined";
-
   if (isServer) {
     return {
       getItem() {
@@ -30,34 +29,38 @@ export function createPersistStore(): WebStorage {
       },
     };
   }
-
   return createWebStorage("local");
 }
 
-// storage to check if the window object is available
+// if the code is running on the client, the createWebStorage function is used to create a WebStorage object that will be used to persist the Redux store.
 const storage =
   typeof window !== "undefined"
     ? createWebStorage("local")
     : createPersistStore();
 
-// Configuration for the Redux persist store
+// The persistConfig object is used to configure the redux-persist library. It specifies the key to use for the persisted state,
+//the version of the persisted state, and the storage object to use.
 const persistConfig = { key: "root", version: 1, storage };
 
-const persistRouter = persistReducer(persistConfig, shoppingReducer);
+const persistedReducer = persistReducer(persistConfig, shoppingReducer);
 
-// Create the Redux store
+// The store variable is created using the configureStore function from the @reduxjs/toolkit library.
 export const store = configureStore({
-  reducer: { shopping: persistRouter },
+  reducer: { shopping: persistedReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      // The serializableCheck option is used to configure the middleware to ignore certain actions when checking for serializability.
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
 
+// The persistor variable is created using the persistStore function from the redux-persist library.
 export let persistor = persistStore(store);
 
+// The RootState type is defined using the ReturnType utility type to extract the return type of the store.getState function.
 export type RootState = ReturnType<typeof store.getState>;
 
+// The AppDispatch type is defined as the type of the store.dispatch function.
 export type AppDispatch = typeof store.dispatch;

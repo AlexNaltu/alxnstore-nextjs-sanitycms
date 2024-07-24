@@ -21,8 +21,7 @@ export const shoppingSlice = createSlice({
     addToCart: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id &&
-          item?.sizes === action.payload.sizes
+          item._id === action.payload._id && item?.size === action.payload.size
       );
 
       if (existingProduct) {
@@ -35,8 +34,7 @@ export const shoppingSlice = createSlice({
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id &&
-          item?.sizes === action.payload.sizes
+          item._id === action.payload._id && item?.size === action.payload.size
       );
       existingProduct && existingProduct.quantity++;
     },
@@ -44,8 +42,7 @@ export const shoppingSlice = createSlice({
     decreaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id &&
-          item?.sizes === action.payload.sizes
+          item._id === action.payload._id && item?.size === action.payload.size
       );
 
       if (existingProduct?.quantity === 1) {
@@ -57,7 +54,7 @@ export const shoppingSlice = createSlice({
 
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item) => item.sizes !== action.payload
+        (item) => item.size !== action.payload
       );
     },
 

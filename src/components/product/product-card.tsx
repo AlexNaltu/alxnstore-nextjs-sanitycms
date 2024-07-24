@@ -29,12 +29,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div>
             <h1 className="text-sm lg:text-lg line-clamp-1">{product.name}</h1>
             <div>
-              {product.sizes.length > 0 && (
-                <div key={product.sizes[0]._key}>
+              {product.variants.length > 0 && (
+                <div key={product.variants[0].variant_id}>
                   <p className="text-[6px]">
                     from
                     <span className="text-sm px-1">
-                      {formatPriceInEUR(product.sizes[0].price)}
+                      {formatPriceInEUR(product.variants[0].price)}
                     </span>
                   </p>
                   <Button className="rounded-none w-full my-2 text-white">

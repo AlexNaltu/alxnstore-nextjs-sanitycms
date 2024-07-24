@@ -19,12 +19,11 @@ export const getFeaturedPlaylists = async () => {
               images,
               description,
               "thumbnail": thumbnail.asset->url,
-              "sizes": sizes[]{
-              size,
+              "variants": variants[]{
+              size, 
               price,
-              _key,
-
-              }
+              variant_id  
+            },
             }
             }`);
 
@@ -47,13 +46,12 @@ export const getNewArrivalsPlaylists = async () => {
               images,
               description,
               "thumbnail": thumbnail.asset->url,
-              "sizes": sizes[]{
-              size,
+              "variants": variants[]{
+              size, 
               price,
-              colors,
-              _key,
-              }
-            }
+              variant_id  
+              },
+             }
             }`);
 
     return playlist;
@@ -75,10 +73,10 @@ export const getRandomProducts = async () => {
               images,
               description,
               "thumbnail": thumbnail.asset->url,
-              "sizes": sizes[]{
+              "variants": variants[]{
               size,
               price,
-              _key,
+              variant_id,
               }
             }
             }`);
@@ -98,12 +96,11 @@ export const getAllProducts = async () => {
        images,
        description,
        "thumbnail": thumbnail.asset->url,
-       "sizes": sizes[]{
-         size,
+       "variants": variants[]{
+         size, 
          price,
-         _key,
-
-       }
+         variant_id  
+       },
     }`);
 
     return products;
@@ -123,11 +120,11 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
       category,
       "slug": slug.current,
       "thumbnail": thumbnail.asset->url,
-      "sizes": sizes[]{
-        size, 
-        price,
-        _key,  
-      },
+      "variants": variants[]{
+         size, 
+         price,
+         variant_id  
+       },
       colors
     }`
     );
@@ -149,10 +146,10 @@ export const getRelatedProducts = async (category: string) => {
        category,
        "slug": slug.current,
        "thumbnail": thumbnail.asset->url,
-       "sizes": sizes[]{
+       "variants": variants[]{
          size, 
          price,
-         _key,  
+         variant_id  
        },
        colors
       }`

@@ -12,13 +12,26 @@ export interface IProduct {
   category: string;
   colors: string[];
   thumbnail: string;
-  sizes: ISize[];
+  variants: IVariants[];
   slug: string;
   quantity: number;
+  variant_id: string;
+  size: string;
+  price: string;
 }
 
-export interface ISize {
+export interface IVariants {
   size: string;
   price: number;
-  _key: string;
+  variant_id: string;
+}
+
+export interface StateProps {
+  shopping: {
+    productData: IProduct[];
+    userInfo: {};
+    orderData: {
+      order: IProduct[];
+    };
+  };
 }

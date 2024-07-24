@@ -2,11 +2,9 @@ import Image from "next/image";
 import React from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { ImCart } from "react-icons/im";
-import { LuMenu } from "react-icons/lu";
 import MobileMenu from "./mobile-menu";
 import Link from "next/link";
 import Searchbar from "../searchbar/searchbar";
-import ShoppingCart from "../cart/ShoppingCart";
 
 const Navbar = () => {
   return (
@@ -29,7 +27,9 @@ const Navbar = () => {
         </div>
         <div className="text-black flex gap-2 items-center">
           <IoPersonCircleOutline size={35} />
-          <ImCart size={28} />
+          <Link href="/cart">
+            <ImCart size={28} />
+          </Link>
           <MobileMenu />
         </div>
       </nav>
