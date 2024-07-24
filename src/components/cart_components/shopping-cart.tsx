@@ -7,6 +7,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { formatPriceInEUR } from "@/lib/formatPrice";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -66,29 +67,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <div>
-        <div>
-          <h1>
-            Your Cart &#40;
-            {productData.length === 1 || productData.length === 0
-              ? `Item (${productData.length})`
-              : `Items (${productData.length})`}
-            &#41;
-          </h1>
-
-          <div className="flex items-center gap-3">
-            <Image
-              src="/delivery-icon.png"
-              alt="delivery"
-              width={50}
-              height={50}
-            />
-            <h3 className="font-sans font-semibold">
-              Est. Delivery Time: 5-10 Days
-            </h3>
-          </div>
-        </div>
-      </div>
+      <div className="tracking-tighter"></div>
     </>
   );
 };

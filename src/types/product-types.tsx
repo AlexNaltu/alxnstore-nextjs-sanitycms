@@ -18,6 +18,7 @@ export interface IProduct {
   variant_id: string;
   size: string;
   price: string;
+  color: string;
 }
 
 export interface IVariants {

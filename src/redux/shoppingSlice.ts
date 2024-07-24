@@ -67,6 +67,15 @@ export const shoppingSlice = createSlice({
     resetOrder: (state) => {
       state.orderData = [];
     },
+    updateQuantity: (state, action) => {
+      const { id, size, quantity } = action.payload;
+      const existingProduct = state.productData.find(
+        (item: IProduct) => item._id === id && item.size === size
+      );
+      if (existingProduct) {
+        existingProduct.quantity = quantity;
+      }
+    },
   },
 });
 
@@ -78,6 +87,7 @@ export const {
   resetCart,
   saveOrder,
   resetOrder,
+  updateQuantity,
 } = shoppingSlice.actions;
 
 export default shoppingSlice.reducer;

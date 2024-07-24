@@ -35,7 +35,7 @@
     "react-paginate": "^8.2.0",
     "react-redux": "^9.1.2",
     "react-responsive-carousel": "^3.2.23",
-    "redux-persist": "^6.0.0",
+    "redux-persist": "Remove-Item -Recurse -Force .nextRemove-Item -Recurse -Force .next^6.0.0",
     "sanity": "^3.49.0",
     "styled-components": "^6.1.11",
     "swiper": "^11.1.4",
