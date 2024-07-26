@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
-import Image from "next/image";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 
@@ -16,6 +15,8 @@ const ShoppingCart = () => {
 
   const [totalAmt, setTotalAmt] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+
+  const shippingCost = totalQuantity > 1 ? 5 + (totalQuantity - 1) : 5;
 
   // Calculate total amount and quantity
   useEffect(() => {
@@ -67,7 +68,31 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <div className="tracking-tighter"></div>
+      <div className="tracking-tighter px-2 my-5">
+        <div className="flex flex-col gap-2">
+          <div>
+            <div className="flex justify-between">
+              <h2>Total Items:</h2>
+              <p>{totalQuantity}</p>
+            </div>
+            <div className="flex justify-between border-b-2 border-slate-300 pb-2">
+              <h2>Shipping:</h2>
+              <p>{formatPriceInEUR(shippingCost)}</p>
+            </div>
+          </div>
+
+          <div className="flex justify-between">
+            <h2>Total Price:</h2>
+            <p>{formatPriceInEUR(totalAmt)}</p>
+          </div>
+          <Button
+            onClick={handleCheckout}
+            className="rounded-none bg-black w-full text-white"
+          >
+            Checkout
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

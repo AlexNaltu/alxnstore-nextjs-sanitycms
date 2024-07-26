@@ -24,6 +24,13 @@ import { cn } from "@/lib/utils";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Props {
   product: IProduct;
@@ -38,7 +45,10 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
 
   const handleVariantChange = (variant: IVariants) => {
     setSelectedVariant(variant);
-    setQuantity(1);
+  };
+
+  const handleQuantityChange = (value: string) => {
+    setQuantity(Number(value));
   };
 
   const dispatch = useDispatch();
@@ -79,7 +89,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
               alt="/"
               width={1000}
               height={1000}
-              className="mx-auto my-3"
+              className="mx-auto my-3 aspect-square object-cover"
             />
           </div>
           <div className="flex justify-center gap-1 min-[470px]:gap-4 min-[470px]:max-w-sm sm:flex-col sm:max-w-[150px] lg:self-start lg:pt-7">
@@ -91,7 +101,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
                   width={300}
                   height={300}
                   onClick={() => setSelectedImage(image)}
-                  className="cursor-pointer border-2 border-black rounded-sm p-1"
+                  className="cursor-pointer border-2 border-black rounded-sm p-1 aspect-square object-cover"
                 />
               </div>
             ))}
@@ -155,15 +165,24 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <label> Quantity</label>
-            <Input
-              type="number"
-              min={"1"}
-              max={"99"}
-              value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
-              className="w-fit"
-            />
+            <Select onValueChange={handleQuantityChange} defaultValue="0">
+              <SelectTrigger className="w-[180px] border-2 border-black">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="0">0</SelectItem>
+                <SelectItem value="1">1</SelectItem>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="3">3</SelectItem>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="5">5</SelectItem>
+                <SelectItem value="6">6</SelectItem>
+                <SelectItem value="7">7</SelectItem>
+                <SelectItem value="8">8</SelectItem>
+                <SelectItem value="9">9</SelectItem>
+                <SelectItem value="10">10</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="flex items-center gap-3 max-w-sm">
             <MdFavorite

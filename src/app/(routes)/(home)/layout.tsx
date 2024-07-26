@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Bakbak_One } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import ReduxProvider from "@/providers/redux-provider";
 
-const inter = Bakbak_One({ subsets: ["latin"], weight: "400" });
+const inter = Josefin_Sans({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

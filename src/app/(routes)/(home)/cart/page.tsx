@@ -15,8 +15,8 @@ const CartSSR = dynamic(
 const CartPage = () => {
   return (
     <div>
-      <NoSSR />
       <CartSSR />
+      <NoSSR />
     </div>
   );
 };

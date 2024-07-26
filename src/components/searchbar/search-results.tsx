@@ -20,12 +20,12 @@ const SearchResults = ({ result }: ResultsProps) => {
         <div className="flex flex-col items-end px-2">
           <h1 className="text-sm lg:text-lg line-clamp-1">{result.name}</h1>
           <div>
-            {result.sizes.length > 0 && (
-              <div key={result.sizes[0]._key}>
+            {result.variants.length > 0 && (
+              <div key={result.variants[0].variant_id}>
                 <p className="text-[6px]">
                   from
                   <span className="text-sm px-1">
-                    {formatPriceInEUR(result.sizes[0].price)}
+                    {formatPriceInEUR(result.variants[0].price)}
                   </span>
                 </p>
               </div>
