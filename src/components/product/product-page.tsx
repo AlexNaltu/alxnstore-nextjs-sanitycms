@@ -165,12 +165,11 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Select onValueChange={handleQuantityChange} defaultValue="0">
+            <Select onValueChange={handleQuantityChange} defaultValue="1">
               <SelectTrigger className="w-[180px] border-2 border-black">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="0">0</SelectItem>
                 <SelectItem value="1">1</SelectItem>
                 <SelectItem value="2">2</SelectItem>
                 <SelectItem value="3">3</SelectItem>
@@ -314,11 +313,3 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
 };
 
 export default ProductPage;
-
-/**onClick={() => setSelectedColor(color)}
-                  className={cn(
-                    getColorStyle(color),
-                    selectedColor === color
-                      ? "border-4 border-black rounded-full w-7 h-7 cursor-pointer"
-                      : "rounded-full w-7 h-7 cursor-pointer"
-                  )} */

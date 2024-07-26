@@ -128,16 +128,16 @@ export const footerLinks = [
 
 export const carouselItems = [
   {
-    description: "Use code 'imnotalxn' for 5% off",
+    description: "Use code imnotalxn for 5% off",
   },
   {
-    description: "Use code 'imnotalxn' for 5% off",
+    description: "Use code imnotalxn for 5% off",
   },
   {
-    description: "Use code 'imnotalxn' for 5% off",
+    description: "Use code imnotalxn for 5% off",
   },
   {
-    description: "Use code 'imnotalxn' for 5% off",
+    description: "Use code imnotalxn for 5% off",
   },
 ];
 

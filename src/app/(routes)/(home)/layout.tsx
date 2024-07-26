@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { Paytone_One } from "next/font/google";
 import "./globals.css";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import ReduxProvider from "@/providers/redux-provider";
 
-const inter = Josefin_Sans({ subsets: ["latin"], weight: "400" });
+const inter = Paytone_One({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen w-full`}>
+      <body className={`${inter.className} flex flex-col min-h-screen w-full `}>
         <ReduxProvider>
           <TopCarousel />
           <Navbar />

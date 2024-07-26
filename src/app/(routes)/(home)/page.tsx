@@ -44,7 +44,7 @@ export default async function Home() {
       <div className="my-3">
         {featuredProducts.map((item: IPlaylist) => (
           <section key={item._id}>
-            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl lg:text-3xl">
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 text-2xl lg:text-3xl">
               {item.title}
             </h1>
             <FeaturedCarousel products={item.products} />
@@ -55,7 +55,7 @@ export default async function Home() {
       <div className="my-3">
         {newArrivalsProducts.map((item: IPlaylist) => (
           <section key={item._id}>
-            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl lg:text-3xl">
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 text-2xl lg:text-3xl">
               {item.title}
             </h1>
             <FeaturedCarousel products={item.products} />
@@ -71,7 +71,7 @@ export default async function Home() {
             You dream it, we design it
           </h4>
           <p className="text-xs">
-            Do you want a custom t-shirt/hoodie/sweatshirts design? Contact us !
+            Do you want a custom t-shirt/hoodie/sweatshirt design? Contact us !
           </p>
           <Link
             href={"/products"}

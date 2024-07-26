@@ -44,21 +44,21 @@ const RandomProductsCarousel = ({ products }: any) => {
               </CardHeader>
               <CardContent className="tracking-tighter font-bold px-1 bg-black ">
                 <div>
-                  <h1 className="text-sm text-white lg:text-lg line-clamp-1">
+                  <h1 className="text-base text-white lg:text-lg line-clamp-1">
                     {product.name}
                   </h1>
                   <div>
                     {product.variants.length > 0 && (
                       <div key={product.variants[0].variant_id}>
-                        <p className="text-[6px] text-white">
+                        <p className="text-xs font-light text-gray-500">
                           from
-                          <span className="text-sm px-1">
+                          <span className="text-base text-white px-1">
                             {formatPriceInEUR(product.variants[0].price)}
                           </span>
                         </p>
                         <Link
                           href={`/products/${product.slug}`}
-                          className="text-xs text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
+                          className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
                         >
                           Choose options
                         </Link>
