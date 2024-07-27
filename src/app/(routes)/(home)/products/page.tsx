@@ -1,7 +1,6 @@
 import { getAllProducts } from "@/actions/actions";
-import ProductFilters from "@/components/filters/product-filters";
 import Newsletter from "@/components/newsletter/newsletter";
-import ProductCategories from "@/components/product/product-categories";
+import ProductCategories from "@/components/filters/product-categories";
 import Products from "@/components/product/products";
 import ProductsGrid from "@/components/product/products-grid";
 import Searchbar from "@/components/searchbar/searchbar";
@@ -22,7 +21,9 @@ export default async function ProductSPage() {
 
   return (
     <div className="max-w-[1400px] mx-auto px-1 mt-3">
-      <Searchbar />
+      <div className="lg:hidden">
+        <Searchbar />
+      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ProductCategories />
         <ProductsGrid />
