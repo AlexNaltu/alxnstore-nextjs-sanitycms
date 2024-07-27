@@ -1,3 +1,5 @@
+"use server";
+
 import { groq } from "next-sanity";
 import { client } from "../../sanity/lib/client";
 import { IProduct } from "@/types/product-types";
@@ -89,12 +91,13 @@ export const getRandomProducts = async () => {
 
 export const getAllProducts = async () => {
   try {
-    const products = await client.fetch(groq`*[_type == "product"] {
+    const data = await client.fetch(groq`*[_type == "product"] {
        _id,
        name,
       "slug": slug.current,
        images,
        description,
+       category,
        "thumbnail": thumbnail.asset->url,
        "variants": variants[]{
          size, 
@@ -103,9 +106,9 @@ export const getAllProducts = async () => {
        },
     }`);
 
-    return products;
+    return { success: data };
   } catch (error: any) {
-    throw new Error(error.message);
+    return { error: "Could not fetch products" };
   }
 };
 

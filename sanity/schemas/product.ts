@@ -72,10 +72,15 @@ export default defineType({
     defineField({
       name: "category",
       title: "Category",
-      type: "string",
-      options: {
-        list: ["T-shirts", "Hoodies", "Sweatshirts"],
-      },
+      type: "array",
+      of: [
+        {
+          type: "string",
+          options: {
+            list: ["T-shirts", "Hoodies", "Sweatshirts"],
+          },
+        },
+      ],
     }),
     defineField({
       name: "colors",

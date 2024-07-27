@@ -9,7 +9,7 @@ export interface IProduct {
   name: string;
   images: string[];
   description: string;
-  category: string;
+  category: Category[];
   colors: string[];
   thumbnail: string;
   variants: IVariants[];
@@ -35,4 +35,8 @@ export interface StateProps {
       order: IProduct[];
     };
   };
+}
+
+export interface Category {
+  category: string;
 }
