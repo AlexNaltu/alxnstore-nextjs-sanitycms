@@ -163,3 +163,30 @@ export const getRelatedProducts = async (category: string) => {
     throw new Error(error.message);
   }
 };
+
+export const getSearchbarProducts = async () => {
+  try {
+    const playlist =
+      await client.fetch(groq`*[_type == "randomProductsPlaylist"] {
+            _id,
+            title,
+            products[]->{
+              _id,
+              name,
+              "slug": slug.current,
+              images,
+              description,
+              "thumbnail": thumbnail.asset->url,
+              "variants": variants[]{
+              size,
+              price,
+              variant_id,
+              }
+            }
+            }`);
+
+    return playlist;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};

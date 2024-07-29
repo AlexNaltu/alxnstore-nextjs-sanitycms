@@ -1,34 +1,33 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
-import { getAllProducts } from "@/actions/actions";
+import { getAllProducts, getSearchbarProducts } from "@/actions/actions";
 import { IProduct } from "@/types/product-types";
 import Fuse from "fuse.js";
 import SearchResults from "./search-results";
 import { useClickAway } from "@uidotdev/usehooks";
+import { useQuery } from "@tanstack/react-query";
 
 const Searchbar = () => {
-  // products state to store all products
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const products = await getAllProducts();
+      if (products.error) throw new Error(products.error);
+      if (products.success) return products.success;
+    },
+  });
   // queryText state to store the search query
   const [queryText, setQueryText] = useState("");
   // searchResults state to store the search results
   const [searchResults, setSearchResults] = useState<IProduct[] | undefined>(
-    products
+    data
   );
 
   const ref = useClickAway(() => {
     setSearchResults([]);
   }) as React.MutableRefObject<HTMLDivElement>;
   // fetch all products
-  useEffect(() => {
-    const fetchedProducts = async () => {
-      const fetchedProducts = await getAllProducts();
-      setProducts(fetchedProducts);
-    };
-
-    fetchedProducts();
-  }, []);
 
   // search products based on the query text with Fuse.js
   useEffect(() => {
@@ -37,7 +36,7 @@ const Searchbar = () => {
       return;
     }
 
-    const fuse = new Fuse(products || [], {
+    const fuse = new Fuse(data || [], {
       keys: ["name", "description"],
       includeScore: true,
     });
@@ -45,9 +44,9 @@ const Searchbar = () => {
     const result = fuse.search(queryText);
     console.log(result);
 
-    const transformedResults = result.map((r) => r.item);
+    const transformedResults = result.map((r) => r.item as IProduct);
     setSearchResults(transformedResults);
-  }, [queryText, products]);
+  }, [queryText, data]);
 
   // handle the change of the input field
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

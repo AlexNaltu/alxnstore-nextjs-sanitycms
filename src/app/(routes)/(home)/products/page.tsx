@@ -20,10 +20,10 @@ export default async function ProductSPage() {
 
   return (
     <div className="max-w-[1400px] mx-auto px-1 mt-3">
-      <div className="lg:hidden">
-        <Searchbar />
-      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
+        <div className="lg:hidden">
+          <Searchbar />
+        </div>
         <div className="lg:flex gap-3 min-[1100px]:gap-10">
           <ProductCategories />
           <ProductsGrid />
