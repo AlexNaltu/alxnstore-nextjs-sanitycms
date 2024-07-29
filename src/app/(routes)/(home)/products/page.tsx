@@ -1,7 +1,6 @@
 import { getAllProducts } from "@/actions/actions";
 import Newsletter from "@/components/newsletter/newsletter";
 import ProductCategories from "@/components/filters/product-categories";
-import Products from "@/components/product/products";
 import ProductsGrid from "@/components/product/products-grid";
 import Searchbar from "@/components/searchbar/searchbar";
 import { getQueryClient } from "@/lib/query";
@@ -25,8 +24,10 @@ export default async function ProductSPage() {
         <Searchbar />
       </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductCategories />
-        <ProductsGrid />
+        <div className="lg:flex gap-3 min-[1100px]:gap-10">
+          <ProductCategories />
+          <ProductsGrid />
+        </div>
       </HydrationBoundary>
       <div className="my-6 px-2">
         <h1 className="tracking-tighter text-2xl min-[470px]:text-3xl font-black md:text-4xl lg:text-5xl">
