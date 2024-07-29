@@ -5,7 +5,7 @@ import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import ReduxProvider from "@/providers/redux-provider";
-import QuertyProvider from "@/providers/query-client-provider";
+import QueryProvider from "@/providers/query-client-provider";
 
 const inter = Paytone_One({ subsets: ["latin"], weight: "400" });
 
@@ -23,12 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen w-full `}>
         <ReduxProvider>
-          <QuertyProvider>
+          <QueryProvider>
             <TopCarousel />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
-          </QuertyProvider>
+          </QueryProvider>
         </ReduxProvider>
       </body>
     </html>
