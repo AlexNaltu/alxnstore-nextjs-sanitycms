@@ -30,14 +30,34 @@ export default function ProductCategories() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Clothing</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <Badge onClick={() => setFilter("")}>All</Badge>
-              <Button onClick={() => setFilter("T-shirts")}>T-Shirts</Button>
-              <Badge onClick={() => setFilter("Hoodies")}>Hoodies</Badge>
-              <Badge onClick={() => setFilter("Sweatshirts")}>
+            <NavigationMenuTrigger className="text-lg sm:text-xl md:text-2xl">
+              Categories
+            </NavigationMenuTrigger>
+            <NavigationMenuContent className="flex flex-col">
+              <Button
+                onClick={() => setFilter("")}
+                className="bg-transparent border-0 border-transparent"
+              >
+                All
+              </Button>
+              <Button
+                onClick={() => setFilter("T-shirts")}
+                className="bg-transparent border-0 border-transparent"
+              >
+                T-Shirts
+              </Button>
+              <Button
+                onClick={() => setFilter("Hoodies")}
+                className="bg-transparent border-0 border-transparent"
+              >
+                Hoodies
+              </Button>
+              <Button
+                onClick={() => setFilter("Sweatshirts")}
+                className="bg-transparent border-0 border-transparent"
+              >
                 Sweatshirts
-              </Badge>
+              </Button>
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
