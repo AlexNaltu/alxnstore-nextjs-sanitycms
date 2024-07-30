@@ -7,6 +7,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
+import CartItem from "./cart-item";
+import dynamic from "next/dynamic";
+import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
+import { ImCart } from "react-icons/im";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -68,33 +72,41 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <div className="tracking-tighter px-2 my-5">
-        <div className="flex flex-col gap-2">
-          <div>
-            <div className="flex justify-between">
-              <h2>Total Items:</h2>
-              <p>{totalQuantity}</p>
-            </div>
-            <div className="flex justify-between border-b-2 border-slate-300 pb-2">
-              <h2>Shipping:</h2>
-              <p>{formatPriceInEUR(shippingCost)}</p>
-            </div>
-          </div>
+      <Drawer direction="right">
+        <DrawerTrigger>
+          <ImCart size={28} />
+        </DrawerTrigger>
+        <DrawerContent>
+          <CartItem />
+          <div className="tracking-tighter px-2 my-5">
+            <div className="flex flex-col gap-2">
+              <div>
+                <div className="flex justify-between">
+                  <h2>Total Items:</h2>
+                  <p>{totalQuantity}</p>
+                </div>
+                <div className="flex justify-between border-b-2 border-slate-300 pb-2">
+                  <h2>Shipping:</h2>
+                  <p>{formatPriceInEUR(shippingCost)}</p>
+                </div>
+              </div>
 
-          <div className="flex justify-between">
-            <h2>Total Price:</h2>
-            <p>{formatPriceInEUR(totalAmt)}</p>
+              <div className="flex justify-between">
+                <h2>Total Price:</h2>
+                <p>{formatPriceInEUR(totalAmt)}</p>
+              </div>
+              <Button
+                onClick={handleCheckout}
+                className="rounded-none bg-black w-full text-white"
+              >
+                Checkout
+              </Button>
+            </div>
           </div>
-          <Button
-            onClick={handleCheckout}
-            className="rounded-none bg-black w-full text-white"
-          >
-            Checkout
-          </Button>
-        </div>
-      </div>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
 
-export default ShoppingCart;
+export default dynamic(() => Promise.resolve(ShoppingCart), { ssr: false });

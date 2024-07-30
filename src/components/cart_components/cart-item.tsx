@@ -13,6 +13,7 @@ import {
 } from "@/redux/shoppingSlice";
 import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
+import dynamic from "next/dynamic";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);
@@ -108,4 +109,4 @@ const CartItem = () => {
   );
 };
 
-export default CartItem;
+export default dynamic(() => Promise.resolve(CartItem), { ssr: false });

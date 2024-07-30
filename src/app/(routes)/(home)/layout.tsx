@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import ReduxProvider from "@/providers/redux-provider";
 import QueryProvider from "@/providers/query-client-provider";
+import { CartProvider } from "use-shopping-cart";
 
 const inter = Paytone_One({ subsets: ["latin"], weight: "400" });
 
@@ -23,12 +24,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen w-full `}>
         <ReduxProvider>
-          <QueryProvider>
-            <TopCarousel />
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </QueryProvider>
+          <CartProvider
+            cartMode="checkout-session"
+            stripe=""
+            currency="EUR"
+            shouldPersist={true}
+          >
+            <QueryProvider>
+              <TopCarousel />
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </QueryProvider>
+          </CartProvider>
         </ReduxProvider>
       </body>
     </html>

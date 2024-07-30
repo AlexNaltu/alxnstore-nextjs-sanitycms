@@ -5,6 +5,7 @@ import { ImCart } from "react-icons/im";
 import MobileMenu from "./mobile-menu";
 import Link from "next/link";
 import Searchbar from "../searchbar/searchbar";
+import ShoppingCart from "../cart_components/shopping-cart";
 
 const Navbar = () => {
   return (
@@ -27,9 +28,7 @@ const Navbar = () => {
         </div>
         <div className="text-black flex gap-2 items-center">
           <IoPersonCircleOutline size={35} />
-          <Link href="/cart">
-            <ImCart size={28} />
-          </Link>
+          <ShoppingCart />
           <MobileMenu />
         </div>
       </nav>

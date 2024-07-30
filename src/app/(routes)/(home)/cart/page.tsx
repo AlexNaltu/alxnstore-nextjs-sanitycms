@@ -1,24 +1,8 @@
 import CartItem from "@/components/cart_components/cart-item";
-import dynamic from "next/dynamic";
-import React from "react";
-
-const NoSSR = dynamic(
-  () => import("@/components/cart_components/shopping-cart"),
-  { ssr: false }
-);
-
-const CartSSR = dynamic(
-  () => import("@/components/cart_components/cart-item"),
-  { ssr: false }
-);
+import ShoppingCart from "@/components/cart_components/shopping-cart";
 
 const CartPage = () => {
-  return (
-    <div>
-      <CartSSR />
-      <NoSSR />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default CartPage;

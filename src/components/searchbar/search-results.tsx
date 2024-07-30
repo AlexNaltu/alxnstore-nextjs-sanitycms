@@ -2,7 +2,6 @@ import { IProduct } from "@/types/product-types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 
 interface ResultsProps {
