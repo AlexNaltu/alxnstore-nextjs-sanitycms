@@ -5,7 +5,6 @@ import { ImCart } from "react-icons/im";
 import MobileMenu from "./mobile-menu";
 import Link from "next/link";
 import Searchbar from "../searchbar/searchbar";
-import ShoppingCart from "../cart_components/shopping-cart";
 
 const Navbar = () => {
   return (

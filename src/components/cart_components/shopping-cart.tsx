@@ -8,9 +8,6 @@ import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import CartItem from "./cart-item";
-import dynamic from "next/dynamic";
-import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
-import { ImCart } from "react-icons/im";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -45,7 +42,7 @@ const ShoppingCart = () => {
   // Handle checkout
   const handleCheckout = async () => {
     const stripePromise = loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!
     );
 
     const stripe = await stripePromise;
