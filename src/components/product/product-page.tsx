@@ -1,7 +1,5 @@
 "use client";
-import { getProductBySlug, getRelatedProducts } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { detailedInformation, itemDescription } from "@/lib/constants";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import { IProduct, IVariants } from "@/types/product-types";
@@ -192,7 +190,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
               className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full"
               onClick={() =>
                 dispatch(addToCart(item)) &&
-                toast.success("Product added to cart")
+                toast.success(`${product.name} added to cart!`)
               }
             >
               <FaShoppingCart size={20} /> Add to Cart

@@ -1,6 +1,6 @@
+"use client";
 import { createSlice } from "@reduxjs/toolkit";
 import { IProduct } from "@/types/product-types";
-import { act } from "react";
 
 const initialState: StoreState = {
   productData: [],
@@ -21,7 +21,9 @@ export const shoppingSlice = createSlice({
     addToCart: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id && item?.size === action.payload.size
+          item._id === action.payload._id &&
+          item?.size === action.payload.size &&
+          item?.color === action.payload.color
       );
 
       if (existingProduct) {
@@ -34,7 +36,9 @@ export const shoppingSlice = createSlice({
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id && item?.size === action.payload.size
+          item._id === action.payload._id &&
+          item?.size === action.payload.size &&
+          item?.color === action.payload.color
       );
       existingProduct && existingProduct.quantity++;
     },
@@ -42,7 +46,9 @@ export const shoppingSlice = createSlice({
     decreaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
         (item: IProduct) =>
-          item._id === action.payload._id && item?.size === action.payload.size
+          item._id === action.payload._id &&
+          item?.size === action.payload.size &&
+          item?.color === action.payload.color
       );
 
       if (existingProduct?.quantity === 1) {

@@ -25,10 +25,13 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-screen w-full `}>
         <ReduxProvider>
           <CartProvider
-            cartMode="checkout-session"
+            cartMode="client-only"
             stripe=""
             currency="EUR"
             shouldPersist={true}
+            mode="payment"
+            successUrl="/success"
+            cancelUrl="/cancel"
           >
             <QueryProvider>
               <TopCarousel />

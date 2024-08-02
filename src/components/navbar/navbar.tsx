@@ -28,7 +28,9 @@ const Navbar = () => {
         </div>
         <div className="text-black flex gap-2 items-center">
           <IoPersonCircleOutline size={35} />
-          <ShoppingCart />
+          <Link href="/cart">
+            <ImCart size={28} />
+          </Link>
           <MobileMenu />
         </div>
       </nav>

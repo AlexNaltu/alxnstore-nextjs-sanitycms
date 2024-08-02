@@ -52,7 +52,7 @@ export default defineType({
               title: "Size",
               type: "string",
               options: {
-                list: ["S", "M", "L", "XL"],
+                list: ["S", "M", "L", "XL", "XXL", "XXXL"],
               },
             }),
             defineField({
