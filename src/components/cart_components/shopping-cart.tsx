@@ -53,7 +53,7 @@ const ShoppingCart = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items: productData }),
+      body: JSON.stringify({ items: productData, shippingCost }),
     });
 
     const data = await response.json();

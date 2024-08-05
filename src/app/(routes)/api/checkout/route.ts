@@ -5,13 +5,13 @@ import Stripe from "stripe";
 export const POST = async (req: NextRequest) => {
   const reqBody = await req.json();
 
-  const { items, email } = reqBody;
+  const { items, email, shippingCost } = reqBody;
 
   const extractingItems = items.map((item: IProduct) => ({
     quantity: item.quantity,
     price_data: {
       currency: "eur",
-      unity_amount: Number(item.price) * 100,
+      unit_amount: Number(item.price) * 100,
       product_data: {
         name: item.name,
         images: [item.thumbnail],
@@ -32,7 +32,7 @@ export const POST = async (req: NextRequest) => {
     const session = await stripe.checkout.sessions.create({
       line_items: extractingItems,
       mode: "payment",
-      payment_method_types: ["card", "revolut_pay", "paypal"],
+      payment_method_types: ["card"],
       shipping_address_collection: {
         allowed_countries: [
           "AT",
@@ -64,7 +64,28 @@ export const POST = async (req: NextRequest) => {
           "SK",
         ],
       },
-      shipping_options: [{ shipping_rate: "" }],
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: shippingCost * 100,
+              currency: "eur",
+            },
+            display_name: "Standard Shipping",
+            delivery_estimate: {
+              minimum: {
+                unit: "business_day",
+                value: "5",
+              },
+              maximum: {
+                unit: "business_day",
+                value: "10",
+              },
+            },
+          },
+        },
+      ],
       phone_number_collection: { enabled: false },
       billing_address_collection: "required",
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
