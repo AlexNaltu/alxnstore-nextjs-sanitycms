@@ -5,7 +5,7 @@ import Stripe from "stripe";
 export const POST = async (req: NextRequest) => {
   const reqBody = await req.json();
 
-  const { items, email, shippingCost } = reqBody;
+  const { items, email, shipping } = reqBody;
 
   const extractingItems = items.map((item: IProduct) => ({
     quantity: item.quantity,
@@ -30,6 +30,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     const session = await stripe.checkout.sessions.create({
+      // @ts-ignore
       line_items: extractingItems,
       mode: "payment",
       payment_method_types: ["card"],
@@ -69,7 +70,7 @@ export const POST = async (req: NextRequest) => {
           shipping_rate_data: {
             type: "fixed_amount",
             fixed_amount: {
-              amount: shippingCost * 100,
+              amount: shipping * 100,
               currency: "eur",
             },
             display_name: "Standard Shipping",
