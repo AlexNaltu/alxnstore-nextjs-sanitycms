@@ -8,6 +8,9 @@ import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import CartItem from "./cart-item";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -16,6 +19,10 @@ const ShoppingCart = () => {
 
   const [totalAmt, setTotalAmt] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+
+  const router = useRouter();
+
+  const { isSignedIn } = useAuth();
 
   const shippingCost = totalQuantity > 1 ? 5 + (totalQuantity - 1) : 5;
 
@@ -68,6 +75,19 @@ const ShoppingCart = () => {
     }
   };
 
+  const handleClick = () => {
+    if (productData.length === 0) {
+      toast.error("Your Cart is Empty");
+      return;
+    }
+
+    if (isSignedIn) {
+      handleCheckout();
+    } else {
+      router.push("/sign-in");
+    }
+  };
+
   return (
     <>
       <CartItem />
@@ -89,12 +109,13 @@ const ShoppingCart = () => {
             <p>{formatPriceInEUR(totalAmt)}</p>
           </div>
           <Button
-            onClick={handleCheckout}
+            onClick={handleClick}
             className="rounded-none bg-black w-full text-white"
           >
             Checkout
           </Button>
         </div>
+        <Toaster position="top-center" />
       </div>
     </>
   );
