@@ -13,6 +13,7 @@ import {
 import { IPlaylist, IProduct } from "@/types/product-types";
 import FeaturedCarousel from "@/components/carousel/featured-products-carousel";
 import RandomProductsCarousel from "@/components/carousel/random-product-carousel";
+import BoxReveal from "@/components/magicui/box-reveal";
 
 export const revalidate = 1000;
 
@@ -22,29 +23,33 @@ export default async function Home() {
   const randomProducts = await getRandomProducts();
 
   return (
-    <div className="max-w-[1400px] mx-auto">
-      <HeroCarousel />
-      <h1 className="font-black uppercase text-xs tracking-tighter bg-primary py-2 px-1 text-white w-fit sm:text-base lg:text-xl lg:px-3">
-        Free shipping for orders over 80$
-      </h1>
-      <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 w-full">
-        {categoryItems.map((category) => (
-          <Link href={category.href} key={category.href}>
-            <Image
-              src={category.image}
-              alt={category.href}
-              width={350}
-              height={300}
-              className="min-[1300px]:aspect-video object-cover object-center"
-            />
-          </Link>
-        ))}
-      </div>
+    <div className="max-w-[1600px] mx-auto px-1">
+      <div className="lg:flex">
+        <HeroCarousel />
 
-      <div className="my-3">
+        <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1 w-full">
+          {categoryItems.map((category) => (
+            <Link href={category.href} key={category.href}>
+              <Image
+                src={category.image}
+                alt={category.href}
+                width={650}
+                height={650}
+                className="min-[1024px]:aspect-video object-cover object-center"
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <BoxReveal boxColor="#000000">
+        <h1 className=" uppercase  tracking-tighter  py-2 text-white w-fit text-[17px] lg:text-2xl">
+          Free shipping for orders over 80$
+        </h1>
+      </BoxReveal>
+      <div className="my-3 sm:my-6 lg:my-10">
         {featuredProducts.map((item: IPlaylist) => (
           <section key={item._id}>
-            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 text-2xl lg:text-3xl">
+            <h1 className="uppercase mb-4 font-bold tracking-tighter text-2xl lg:text-3xl text-white">
               {item.title}
             </h1>
             <FeaturedCarousel products={item.products} />
@@ -52,10 +57,10 @@ export default async function Home() {
         ))}
       </div>
       <CodeBanner />
-      <div className="my-3">
+      <div className="my-3 sm:my-6 lg:my-10">
         {newArrivalsProducts.map((item: IPlaylist) => (
           <section key={item._id}>
-            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 text-2xl lg:text-3xl">
+            <h1 className="uppercase mb-4 font-bold tracking-tighter text-2xl lg:text-3xl text-white">
               {item.title}
             </h1>
             <FeaturedCarousel products={item.products} />

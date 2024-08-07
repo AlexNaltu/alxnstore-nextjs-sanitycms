@@ -9,7 +9,7 @@ import User from "./user";
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-secondary flex justify-between px-1 lg:px-3  w-full max-w-[1400px] mx-auto">
+      <nav className="bg-white flex justify-between px-1 lg:px-3 w-full mx-auto">
         <div className="flex gap-4 lg:py-3 items-center">
           <Link href="/">
             <Image

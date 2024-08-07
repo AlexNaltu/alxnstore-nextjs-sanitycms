@@ -57,7 +57,7 @@ const Searchbar = () => {
     <div className="relative" ref={ref}>
       <Input
         placeholder="Search Products..."
-        className="rounded-none w-full lg:min-w-[500px] border-primary border-2"
+        className="rounded-none w-full lg:min-w-[600px] border-primary border-2"
         value={queryText}
         onChange={handleChange}
         type="text"

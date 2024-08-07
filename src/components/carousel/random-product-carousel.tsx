@@ -42,9 +42,9 @@ const RandomProductsCarousel = ({ products }: any) => {
                   className="object-cover "
                 />
               </CardHeader>
-              <CardContent className="tracking-tighter font-bold px-1 bg-black ">
+              <CardContent className="tracking-tighter font-bold px-1 bg-white">
                 <div>
-                  <h1 className="text-base text-white lg:text-lg line-clamp-1">
+                  <h1 className="text-base text-black lg:text-lg line-clamp-1">
                     {product.name}
                   </h1>
                   <div>
@@ -52,7 +52,7 @@ const RandomProductsCarousel = ({ products }: any) => {
                       <div key={product.variants[0].variant_id}>
                         <p className="text-xs font-light text-gray-500">
                           from
-                          <span className="text-base text-white px-1">
+                          <span className="text-base text-black px-1">
                             {formatPriceInEUR(product.variants[0].price)}
                           </span>
                         </p>
