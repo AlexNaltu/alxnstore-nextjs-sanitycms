@@ -2,7 +2,7 @@
 
 import { groq } from "next-sanity";
 import { client } from "../../sanity/lib/client";
-import { IProduct } from "@/types/product-types";
+import { Category, IProduct } from "@/types/product-types";
 
 interface SlugProps {
   slug: string;
@@ -140,27 +140,24 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
 
 export const getRelatedProducts = async (category: string) => {
   try {
-    const product: IProduct[] = await client.fetch(
-      groq`*[_type == "product" && category == "${category}"][0...8] {
-       _id,
-       name,
-       "images": images[].asset->url,
-       description,
-       category,
-       "slug": slug.current,
-       "thumbnail": thumbnail.asset->url,
-       "variants": variants[]{
-         size, 
-         price,
-         variant_id  
-       },
-       colors
+    const products: IProduct[] = await client.fetch(
+      `*[_type == "product" && "${category}" in category][0...8] {
+        _id,
+        name,
+        "images": images[].asset->url,
+        description,
+        category,
+        "slug": slug.current,
+        "thumbnail": thumbnail.asset->url,
+        "variants": variants[]{ size, price, variant_id },
+        colors
       }`
     );
 
-    return product;
-  } catch (error: any) {
-    throw new Error(error.message);
+    return products;
+  } catch (error) {
+    console.error("Error fetching related products:", error);
+    return [];
   }
 };
 

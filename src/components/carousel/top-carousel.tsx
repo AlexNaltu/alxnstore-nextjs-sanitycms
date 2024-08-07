@@ -8,7 +8,7 @@ import { carouselItems } from "@/lib/constants";
 
 const TopCarousel = () => {
   return (
-    <div className="bg-black py-2 text-center max-w-[1400px] min-[1400px]:mx-auto ">
+    <div className="bg-black py-2 text-center ">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}

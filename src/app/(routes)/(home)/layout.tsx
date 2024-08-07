@@ -25,7 +25,7 @@ export default function RootLayout({
     <Clerk>
       <html lang="en">
         <body
-          className={`${inter.className} flex flex-col min-h-screen w-full `}
+          className={`${inter.className} flex flex-col min-h-screen w-full bg-primary`}
         >
           <ReduxProvider>
             <CartProvider

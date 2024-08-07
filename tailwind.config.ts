@@ -25,7 +25,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: "#0077c0",
+        primary: "#171717",
         secondary: "#c7eeff",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
