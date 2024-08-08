@@ -7,10 +7,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
-import CartItem, { CartInfo } from "./cart-item";
+import CartItem from "./cart-item";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import CartInfo from "./cart-info";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -113,7 +114,7 @@ const ShoppingCart = () => {
               </div>
               <Button
                 onClick={handleClick}
-                className="rounded-none bg-black w-full text-white"
+                className="rounded-none bg-black w-full text-white hover:bg-gray-900 transition-all ease-in-out duration-300"
               >
                 Checkout
               </Button>

@@ -46,13 +46,13 @@ const CartItem = () => {
               />
               <div className="text-xs flex flex-col gap-1 text-white">
                 <div className="flex items-center gap-10 ">
-                  <h1 className="font-bold uppercase line-clamp-2">
+                  <h1 className="font-bold uppercase line-clamp-2 lg:text-lg">
                     {item.name}
                   </h1>
                   <GoTrash
                     onClick={() => dispatch(deleteProduct(item.size))}
-                    className="text-xl text-white cursor-pointer"
-                    size={20}
+                    className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300"
+                    size={25}
                   />
                 </div>
                 <p>Color: {item.color}</p>
@@ -90,52 +90,3 @@ const CartItem = () => {
 };
 
 export default dynamic(() => Promise.resolve(CartItem), { ssr: false });
-
-export const CartInfo = () => {
-  const { productData } = useSelector((state: StateProps) => state.shopping);
-  const dispatch = useDispatch();
-
-  return (
-    <div className="flex justify-between px-1 sm:px-3">
-      <div className="tracking-tighter  text-white">
-        <h1 className="font-black">
-          {productData.length === 0 ? (
-            "Your cart is empty"
-          ) : (
-            <>
-              Your Cart &#40;
-              {productData.length === 1
-                ? `Item ${productData.length}`
-                : `Items ${productData.length}`}
-              &#41;
-            </>
-          )}
-        </h1>
-
-        <div className="flex items-center gap-3">
-          <Image
-            src="/delivery-icon.png"
-            alt="delivery"
-            width={50}
-            height={50}
-          />
-          <h3 className="font-sans font-semibold text-sm">
-            Est. Delivery Time: 5-10 Days
-          </h3>
-        </div>
-      </div>
-      <div className="self-end">
-        {productData.length === 0 ? (
-          <div></div>
-        ) : (
-          <Button
-            className="bg-transparent text-white self-end underline p-0 min-[470px]:text-lg"
-            onClick={() => dispatch(resetCart())}
-          >
-            Clear Cart
-          </Button>
-        )}
-      </div>
-    </div>
-  );
-};
