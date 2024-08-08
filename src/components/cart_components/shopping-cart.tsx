@@ -7,7 +7,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 import { Button } from "../ui/button";
 import { formatPriceInEUR } from "@/lib/formatPrice";
-import CartItem from "./cart-item";
+import CartItem, { CartInfo } from "./cart-item";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
@@ -90,32 +90,37 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <CartItem />
-      <div className="tracking-tighter px-2 my-5">
-        <div className="flex flex-col gap-2">
-          <div>
-            <div className="flex justify-between">
-              <h2>Total Items:</h2>
-              <p>{totalQuantity}</p>
-            </div>
-            <div className="flex justify-between border-b-2 border-slate-300 pb-2">
-              <h2>Shipping:</h2>
-              <p>{formatPriceInEUR(shippingCost)}</p>
-            </div>
-          </div>
+      <div className="max-w-[1000px] mx-auto">
+        <CartInfo />
+        <div className="md:flex justify-between">
+          <CartItem />
+          <div className="tracking-tighter px-1 sm:px-3 my-5 text-white w-full md:max-w-[300px] lg:max-w-[400px]">
+            <div className="flex flex-col gap-2">
+              <div>
+                <div className="flex justify-between">
+                  <h2>Total Items:</h2>
+                  <p>{totalQuantity}</p>
+                </div>
+                <div className="flex justify-between border-b-2 border-slate-300 pb-2">
+                  <h2>Shipping:</h2>
+                  <p>{formatPriceInEUR(shippingCost)}</p>
+                </div>
+              </div>
 
-          <div className="flex justify-between">
-            <h2>Total Price:</h2>
-            <p>{formatPriceInEUR(totalAmt)}</p>
+              <div className="flex justify-between">
+                <h2>Total Price:</h2>
+                <p>{formatPriceInEUR(totalAmt)}</p>
+              </div>
+              <Button
+                onClick={handleClick}
+                className="rounded-none bg-black w-full text-white"
+              >
+                Checkout
+              </Button>
+            </div>
+            <Toaster position="top-center" />
           </div>
-          <Button
-            onClick={handleClick}
-            className="rounded-none bg-black w-full text-white"
-          >
-            Checkout
-          </Button>
         </div>
-        <Toaster position="top-center" />
       </div>
     </>
   );

@@ -9,11 +9,13 @@ import {
   decreaseQuantity,
   deleteProduct,
   increaseQuantity,
+  resetCart,
   updateQuantity,
 } from "@/redux/shoppingSlice";
 import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import dynamic from "next/dynamic";
+import { Button } from "../ui/button";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);
@@ -28,7 +30,74 @@ const CartItem = () => {
 
   return (
     <>
-      <div className="tracking-tighter px-1">
+      <div className="px-1 flex flex-col sm:px-3">
+        <div className="flex flex-col gap-8 w-full my-3">
+          {productData.map((item: IProduct) => (
+            <div
+              key={item._id}
+              className="flex font-sans text-slate-500 gap-1 "
+            >
+              <Image
+                src={item.thumbnail}
+                alt={item.name}
+                width={1000}
+                height={1000}
+                className="max-w-[45%] min-[470px]:max-w-[200px] aspect-square object-contain self-start"
+              />
+              <div className="text-xs flex flex-col gap-1 text-white">
+                <div className="flex items-center gap-10 ">
+                  <h1 className="font-bold uppercase line-clamp-2">
+                    {item.name}
+                  </h1>
+                  <GoTrash
+                    onClick={() => dispatch(deleteProduct(item.size))}
+                    className="text-xl text-white cursor-pointer"
+                    size={20}
+                  />
+                </div>
+                <p>Color: {item.color}</p>
+                <p>Size: {item.size}</p>
+
+                <div className="flex gap-3">
+                  <Input
+                    type="tel"
+                    max={99}
+                    value={item.quantity}
+                    className="w-20 rounded-none border-2 border-black text-black"
+                    onChange={(e) => {
+                      handleQuantityChange(
+                        item._id,
+                        item.size,
+                        Number(e.target.value)
+                      );
+                    }}
+                  />
+                </div>
+                <p className="font-black text-white">
+                  {formatPriceInEUR(Number(item.price))}
+                </p>
+                <div className="flex items-center gap-2">
+                  <CiHeart size={20} />
+                  <p>Add to Wishlist</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default dynamic(() => Promise.resolve(CartItem), { ssr: false });
+
+export const CartInfo = () => {
+  const { productData } = useSelector((state: StateProps) => state.shopping);
+  const dispatch = useDispatch();
+
+  return (
+    <div className="flex justify-between px-1 sm:px-3">
+      <div className="tracking-tighter  text-white">
         <h1 className="font-black">
           {productData.length === 0 ? (
             "Your cart is empty"
@@ -55,58 +124,18 @@ const CartItem = () => {
           </h3>
         </div>
       </div>
-      <div className="flex flex-col gap-8 w-full my-3">
-        {productData.map((item: IProduct) => (
-          <div key={item._id} className="flex font-sans text-slate-500  ">
-            <Image
-              src={item.thumbnail}
-              alt={item.name}
-              width={1000}
-              height={1000}
-              className="px-2 max-w-[45%] aspect-square object-contain"
-            />
-            <div className="text-xs flex flex-col gap-1">
-              <div className="flex items-center gap-10 ">
-                <h1 className="font-bold uppercase line-clamp-1 text-sm">
-                  {item.name}
-                </h1>
-                <GoTrash
-                  onClick={() => dispatch(deleteProduct(item.size))}
-                  className="text-xl text-black cursor-pointer"
-                  size={20}
-                />
-              </div>
-              <p>Color: {item.color}</p>
-              <p>Size: {item.size}</p>
-
-              <div className="flex gap-3">
-                <Input
-                  type="tel"
-                  max={99}
-                  value={item.quantity}
-                  className="w-20 rounded-none border-2 border-black"
-                  onChange={(e) => {
-                    handleQuantityChange(
-                      item._id,
-                      item.size,
-                      Number(e.target.value)
-                    );
-                  }}
-                />
-              </div>
-              <p className="font-black text-black">
-                {formatPriceInEUR(Number(item.price))}
-              </p>
-              <div className="flex items-center gap-2">
-                <CiHeart size={20} />
-                <p>Add to Wishlist</p>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="self-end">
+        {productData.length === 0 ? (
+          <div></div>
+        ) : (
+          <Button
+            className="bg-transparent text-white self-end underline p-0 min-[470px]:text-lg"
+            onClick={() => dispatch(resetCart())}
+          >
+            Clear Cart
+          </Button>
+        )}
       </div>
-    </>
+    </div>
   );
 };
-
-export default dynamic(() => Promise.resolve(CartItem), { ssr: false });
