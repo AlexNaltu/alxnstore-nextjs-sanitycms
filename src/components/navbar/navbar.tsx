@@ -25,7 +25,7 @@ const Navbar = () => {
             <Searchbar />
           </div>
         </div>
-        <div className="text-black flex gap-2 items-center">
+        <div className="text-black flex gap-2 justify-center items-center">
           <User />
           <Link href="/cart">
             <ImCart size={28} />

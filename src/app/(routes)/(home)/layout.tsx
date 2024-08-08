@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Paytone_One } from "next/font/google";
+import { Maven_Pro, Paytone_One } from "next/font/google";
 import "./globals.css";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
@@ -9,7 +9,7 @@ import QueryProvider from "@/providers/query-client-provider";
 import { CartProvider } from "use-shopping-cart";
 import Clerk from "@/providers/clerk-provider";
 
-const inter = Paytone_One({ subsets: ["latin"], weight: "400" });
+const inter = Maven_Pro({ subsets: ["latin"], weight: "900" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

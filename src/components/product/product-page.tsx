@@ -5,7 +5,7 @@ import { formatPriceInEUR } from "@/lib/formatPrice";
 import { IProduct, IVariants } from "@/types/product-types";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoShirt } from "react-icons/io5";
 import {
   Accordion,
@@ -62,6 +62,8 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
     color: selectedColor,
   };
 
+  console.log(item);
+
   //get color style
   function getColorStyle(color: string) {
     switch (color) {
@@ -78,19 +80,19 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
   }
 
   return (
-    <div className="tracking-tighter px-2 max-w-[1400px] mx-auto">
-      <div className="lg:flex justify-center">
-        <div className="sm:flex sm:flex-row-reverse">
-          <div className="max-w-[500px] mx-auto">
+    <div className="tracking-tighter px-2 max-w-[1400px] mx-auto text-white lg:mt-6">
+      <div className="lg:flex justify-center gap-2 xl:gap-4">
+        <div className="sm:flex sm:flex-row-reverse gap-2 md:max-w-[700px]">
+          <div className="max-w-[500px]  mx-auto">
             <Image
               src={selectedImage}
               alt="/"
               width={1000}
               height={1000}
-              className="mx-auto my-3 aspect-square object-cover"
+              className="mx-auto my-3 lg:my-6 aspect-square object-cover rounded-sm"
             />
           </div>
-          <div className="flex justify-center gap-1 min-[470px]:gap-4 min-[470px]:max-w-sm sm:flex-col sm:max-w-[150px] lg:self-start lg:pt-7">
+          <div className="flex justify-center gap-1 min-[470px]:gap-4 min-[470px]:max-w-sm sm:flex-col sm:max-w-[150px] lg:self-start lg:pt-7 mx-auto">
             {product?.images.map((image, i) => (
               <div key={i}>
                 <Image
@@ -99,7 +101,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
                   width={300}
                   height={300}
                   onClick={() => setSelectedImage(image)}
-                  className="cursor-pointer border-2 border-black rounded-sm p-1 aspect-square object-cover"
+                  className="cursor-pointer border-2 border-black rounded-sm p-1 aspect-square object-cover bg-white"
                 />
               </div>
             ))}
@@ -136,12 +138,21 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
             <div className="flex gap-2 md:gap-4">
               {product?.variants.map((variant, i) => (
                 <div key={i}>
-                  <Button
-                    className="border-black border-2 h-10 bg-transparent"
-                    onClick={() => handleVariantChange(variant)}
-                  >
-                    {variant.size}
-                  </Button>
+                  {selectedVariant === variant ? (
+                    <Button
+                      className="border-white border-2 h-10 bg-black text-white hover:bg-black hover:text-white hover:border-black transition-all duration-300 ease-in"
+                      onClick={() => handleVariantChange(variant)}
+                    >
+                      {variant.size}
+                    </Button>
+                  ) : (
+                    <Button
+                      className="border-black border-2 h-10 bg-white text-black hover:text-white hover:border-black transition-all duration-300 ease-in"
+                      onClick={() => handleVariantChange(variant)}
+                    >
+                      {variant.size}
+                    </Button>
+                  )}
                 </div>
               ))}
             </div>
@@ -155,14 +166,14 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
                   className={cn(
                     getColorStyle(color),
                     selectedColor === color
-                      ? "border-4 border-black rounded-full w-7 h-7 cursor-pointer"
+                      ? "border-4 border-white rounded-full w-7 h-7 cursor-pointer"
                       : "rounded-full w-7 h-7 cursor-pointer"
                   )}
                 ></div>
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-black">
             <Select onValueChange={handleQuantityChange} defaultValue="1">
               <SelectTrigger className="w-[180px] border-2 border-black">
                 <SelectValue />
@@ -187,7 +198,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
               className="border-2 border-black rounded-sm text-red-700 h-8 w-10"
             />
             <Button
-              className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full"
+              className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full hover:bg-green-900"
               onClick={() =>
                 dispatch(addToCart(item)) &&
                 toast.success(`${product.name} added to cart!`)
@@ -219,7 +230,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
       </div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1" className="my-4">
-          <AccordionTrigger className="decoration-0 sm:text-xl md:text-3xl">
+          <AccordionTrigger className="decoration-0 text-lg min-[470px]:text-xl sm:text-2xl md:text-4xl">
             Detailed Information
           </AccordionTrigger>
           <AccordionContent>
@@ -238,7 +249,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <h2 className="uppercase font-black mt-5 sm:text-2xl md:text-4xl">
+      <h2 className="uppercase font-black mt-5 sm:text-2xl md:text-4xl lg:my-5">
         More From This Category
       </h2>
 

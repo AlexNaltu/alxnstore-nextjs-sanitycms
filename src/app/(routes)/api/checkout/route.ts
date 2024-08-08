@@ -15,6 +15,10 @@ export const POST = async (req: NextRequest) => {
       product_data: {
         name: item.name,
         images: [item.thumbnail],
+        metadata: {
+          size: item.size,
+          color: item.color,
+        },
       },
     },
   }));
@@ -22,6 +26,8 @@ export const POST = async (req: NextRequest) => {
   const orderData = items.map((item: IProduct) => ({
     external_variant_id: item.variant_id,
     quantity: item.quantity,
+    size: item.size,
+    color: item.color,
   }));
 
   try {

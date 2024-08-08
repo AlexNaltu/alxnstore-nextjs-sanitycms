@@ -15,7 +15,7 @@ import {
 import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import dynamic from "next/dynamic";
-import { Button } from "../ui/button";
+import Link from "next/link";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);

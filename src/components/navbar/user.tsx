@@ -8,14 +8,14 @@ const User = () => {
   return (
     <div>
       <div className="cursor-pointer">
-        <div className="pt-2">
+        <div>
           <SignedOut>
             <SignInButton>
               <IoPersonCircleOutline size={35} />
             </SignInButton>
           </SignedOut>
         </div>
-        <div className="pt-2">
+        <div className="mt-2">
           <SignedIn>
             <UserButton />
           </SignedIn>
