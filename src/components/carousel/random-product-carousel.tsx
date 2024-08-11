@@ -58,12 +58,14 @@ const RandomProductsCarousel = ({ products }: any) => {
                             {formatPriceInEUR(product.variants[0].price)}
                           </span>
                         </p>
-                        <Link
-                          href={`/product/${product.slug}`}
-                          className="text-base mb-1 text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
-                        >
-                          Choose options
-                        </Link>
+                        <div className="pb-2">
+                          <Link
+                            href={`/products/${product.slug}`}
+                            className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
+                          >
+                            Choose options
+                          </Link>
+                        </div>
                       </div>
                     )}
                   </div>

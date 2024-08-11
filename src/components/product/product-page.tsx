@@ -274,7 +274,7 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
       >
         {relatedProducts.map((product: IProduct) => (
           <SwiperSlide key={product._id}>
-            <Card className="rounded-none border-none custom-shadow my-3">
+            <Card className="rounded-none border-none custom-shadow mb-2">
               <CardHeader>
                 <Link href={`/products/${product.slug}`}>
                   <Image
@@ -288,24 +288,26 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
               </CardHeader>
               <CardContent className="tracking-tighter font-bold px-1">
                 <div>
-                  <h1 className="text-sm lg:text-lg line-clamp-1">
+                  <h1 className="text-base lg:text-lg line-clamp-1 md:text-xl">
                     {product.name}
                   </h1>
                   <div>
                     {product.variants.length > 0 && (
                       <div key={product.variants[0].variant_id}>
-                        <p className="text-[6px]">
+                        <p className="text-xs md:text-sm font-light text-gray-500">
                           from
-                          <span className="text-sm px-1">
+                          <span className="text-base text-black px-1 md:text-lg">
                             {formatPriceInEUR(product.variants[0].price)}
                           </span>
                         </p>
-                        <Link
-                          href={`/product/${product.slug}`}
-                          className="text-xs text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-sm"
-                        >
-                          Choose options
-                        </Link>
+                        <div className="pb-2">
+                          <Link
+                            href={`/products/${product.slug}`}
+                            className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
+                          >
+                            Choose options
+                          </Link>
+                        </div>
                       </div>
                     )}
                   </div>

@@ -1,3 +1,7 @@
+import { AiFillFacebook } from "react-icons/ai";
+import { FaInstagramSquare, FaYoutube, FaLinkedin } from "react-icons/fa";
+import { IoLogoTiktok } from "react-icons/io5";
+
 export const heroCarouselImages = [
   {
     image: "/carousel/hero1.png",
@@ -36,7 +40,7 @@ export const heroCarouselImagesLg = [
 
 export const categoryItems = [
   {
-    href: "/category/t-shirts",
+    href: "/products?category=T-shirts",
     image: "/categories/tshirts.png",
   },
   {
@@ -44,11 +48,11 @@ export const categoryItems = [
     image: "/categories/bestsellers.png",
   },
   {
-    href: "/category/sweatshirt.png",
+    href: "/products?category=Sweatshirts",
     image: "/categories/sweatshirt.png",
   },
   {
-    href: "/category/hoodies",
+    href: "/products?category=Hoodies",
     image: "/categories/hoodies.png",
   },
 ];
@@ -221,5 +225,33 @@ export const detailedInformation = [
       item2: "- Sport Grey and Antique colors: 90% cotton, 10% polyester",
       item3: "- Graphite Heather: 50% ring-spun cotton, 50% polyester",
     },
+  },
+];
+
+export const Socials = [
+  {
+    icon: <AiFillFacebook />,
+    href: "https://www.facebook.com",
+    className: "text-blue-600",
+  },
+  {
+    icon: <FaInstagramSquare />,
+    href: "https://www.instagram.com",
+    className: "text-orange-500",
+  },
+  {
+    icon: <IoLogoTiktok />,
+    href: "https://www.twitter.com",
+    className: "text-white",
+  },
+  {
+    icon: <FaLinkedin />,
+    href: "https://www.linkedin.com",
+    className: "text-blue-800",
+  },
+  {
+    icon: <FaYoutube />,
+    href: "https://www.youtube.com",
+    className: "text-red-600",
   },
 ];

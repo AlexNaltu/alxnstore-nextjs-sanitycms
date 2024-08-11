@@ -39,8 +39,6 @@ const ProductsGrid = () => {
     return data;
   }, [data, category]);
 
-  console.log(filtered);
-
   // Handle page click event
   const handlePageClick = (selectedPage: PageClickData) => {
     setCurrentPage(selectedPage.selected);
@@ -51,6 +49,8 @@ const ProductsGrid = () => {
 
   // Paginate the filtered products list
   const paginatedData = filtered.slice(offset, offset + itemsPerPage);
+
+  console.log(paginatedData);
 
   if (error) return <div>{error.message}</div>;
   if (filtered && data)

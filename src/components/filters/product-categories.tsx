@@ -42,42 +42,7 @@ export default function ProductCategories() {
 
   return (
     <div>
-      <NavigationMenu className="lg:hidden">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-lg sm:text-xl md:text-2xl">
-              Categories
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="flex flex-col">
-              <Button
-                onClick={() => setFilter("")}
-                className="bg-transparent border-0 border-transparent"
-              >
-                All
-              </Button>
-              <Button
-                onClick={() => setFilter("T-shirts")}
-                className="bg-transparent border-0 border-transparent"
-              >
-                T-Shirts
-              </Button>
-              <Button
-                onClick={() => setFilter("Hoodies")}
-                className="bg-transparent border-0 border-transparent"
-              >
-                Hoodies
-              </Button>
-              <Button
-                onClick={() => setFilter("Sweatshirts")}
-                className="bg-transparent border-0 border-transparent"
-              >
-                Sweatshirts
-              </Button>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <div className="hidden lg:inline-flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-white">
         <h1 className="text-2xl min-[1100px]:text-3xl">Categories:</h1>
         <div className="flex items-center space-x-2">
           <label

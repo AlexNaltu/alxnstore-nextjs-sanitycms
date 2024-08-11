@@ -13,33 +13,40 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div>
-      <Card className="rounded-none border-none custom-shadow">
+      <Card className="rounded-none border-none custom-shadow mb-2">
         <CardHeader>
-          <Link href={`/products/${product._id}`}>
+          <Link href={`/products/${product.slug}`}>
             <Image
               src={product.thumbnail}
               alt={product.name}
               width={1000}
               height={1000}
-              className="object-cover"
+              className="object-cover "
             />
           </Link>
         </CardHeader>
-        <CardContent className="tracking-tighter font-bold px-1 ">
+        <CardContent className="tracking-tighter font-bold px-1">
           <div>
-            <h1 className="text-sm lg:text-lg line-clamp-1">{product.name}</h1>
+            <h1 className="text-base lg:text-lg line-clamp-1 md:text-xl">
+              {product.name}
+            </h1>
             <div>
               {product.variants.length > 0 && (
                 <div key={product.variants[0].variant_id}>
-                  <p className="text-[6px]">
+                  <p className="text-xs md:text-sm font-light text-gray-500">
                     from
-                    <span className="text-sm px-1">
+                    <span className="text-base text-black px-1 md:text-lg">
                       {formatPriceInEUR(product.variants[0].price)}
                     </span>
                   </p>
-                  <Button className="rounded-none w-full my-2 text-white">
-                    <Link href="/">Add To Cart</Link>
-                  </Button>
+                  <div className="pb-2">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
+                    >
+                      Choose options
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>

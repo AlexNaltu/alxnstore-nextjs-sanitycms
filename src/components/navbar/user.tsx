@@ -15,7 +15,7 @@ const User = () => {
             </SignInButton>
           </SignedOut>
         </div>
-        <div className="mt-2">
+        <div>
           <SignedIn>
             <UserButton />
           </SignedIn>

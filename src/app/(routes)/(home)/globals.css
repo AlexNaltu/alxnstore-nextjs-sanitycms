@@ -89,12 +89,22 @@
 }
 
 .pagination {
-  @apply flex justify-center bg-primary text-white gap-5 py-2 h-8 my-5 text-sm max-w-[400px] md:h-12 md:py-4 md:max-w-[600px];
+  @apply flex justify-center bg-black rounded-sm text-white gap-5 py-2 h-8 my-5 text-sm max-w-[400px] md:h-12 md:py-4 md:max-w-[600px];
 }
 
 .pagination li a {
 }
 
 .pagination li.active a {
-  @apply text-secondary;
+  @apply text-slate-200;
+}
+
+.custom-bg {
+  background-image: url("/newsletter-bg.png");
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: 16rem;
+
+  @apply min-[1500px]:h-[20rem] min-[1900px]:h-[24rem] min-[2250px]:h-[30rem];
 }
