@@ -104,7 +104,7 @@
   background-size: cover;
   background-position: top;
   width: 100%;
-  height: 16rem;
+  height: 17rem;
 
   @apply min-[1500px]:h-[20rem] min-[1900px]:h-[24rem] min-[2250px]:h-[30rem];
 }

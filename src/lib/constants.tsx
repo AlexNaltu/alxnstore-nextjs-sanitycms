@@ -230,28 +230,23 @@ export const detailedInformation = [
 
 export const Socials = [
   {
-    icon: <AiFillFacebook />,
     href: "https://www.facebook.com",
-    className: "text-blue-600",
+    image: "/socials/facebook-icon.jpg",
   },
   {
-    icon: <FaInstagramSquare />,
     href: "https://www.instagram.com",
-    className: "text-orange-500",
+    image: "/socials/Instagram-icon.jpg",
   },
   {
-    icon: <IoLogoTiktok />,
-    href: "https://www.twitter.com",
-    className: "text-white",
+    href: "https://www.tiktok.com",
+    image: "/socials/tiktok-icon.png",
   },
   {
-    icon: <FaLinkedin />,
     href: "https://www.linkedin.com",
-    className: "text-blue-800",
+    image: "/socials/linked-icon.png",
   },
   {
-    icon: <FaYoutube />,
     href: "https://www.youtube.com",
-    className: "text-red-600",
+    image: "/socials/youtube-icon.png",
   },
 ];

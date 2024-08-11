@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Socials } from "@/lib/constants";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const Newsletter = () => {
   return (
@@ -26,12 +27,10 @@ const Newsletter = () => {
               Register
             </Button>
           </form>
-          <div className="flex gap-1 items-center mt-2">
+          <div className="flex items-center mt-2 gap-3">
             {Socials.map((social, i) => (
               <Link href={social.href} key={i}>
-                <i className={cn(`${social.className} w-7 h-7`)}>
-                  {social.icon}
-                </i>
+                <Image src={social.image} width={30} height={30} alt="/" />
               </Link>
             ))}
           </div>
