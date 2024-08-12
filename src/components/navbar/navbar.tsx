@@ -5,6 +5,7 @@ import MobileMenu from "./mobile-menu";
 import Link from "next/link";
 import Searchbar from "../searchbar/searchbar";
 import User from "./user";
+import { FaHeart } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -27,6 +28,9 @@ const Navbar = () => {
         </div>
         <div className="text-black flex gap-2 justify-center items-center">
           <User />
+          <Link href="/favorite">
+            <FaHeart size={28} />
+          </Link>
           <Link href="/cart">
             <ImCart size={28} />
           </Link>

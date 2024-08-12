@@ -193,10 +193,9 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
             </Select>
           </div>
           <div className="flex items-center gap-3 max-w-sm">
-            <MdFavorite
-              size={38}
-              className="border-2 border-black rounded-sm text-red-700 h-8 w-10"
-            />
+            <div className="bg-white p-[7px] rounded-sm hover:bg-red-600 transition-all duration-200 ease-in-out cursor-pointer">
+              <Image src="/favorite-icon.png" alt="/" width={30} height={30} />
+            </div>
             <Button
               className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full hover:bg-green-900"
               onClick={() =>

@@ -59,24 +59,39 @@ export const categoryItems = [
 
 export const menuLinks = [
   {
+    href: "/products",
+    title: "All Products",
+  },
+  {
+    href: "/products?category=T-shirts",
+    title: "T-Shirts",
+  },
+  {
+    href: "/products?category=Sweatshirts",
+    title: "Sweatshirts",
+  },
+  {
+    href: "/products?category=Hoodies",
+    title: "Hoodies",
+  },
+];
+
+export const menuNavLinks = [
+  {
     href: "/",
     title: "Home",
   },
   {
-    href: "/category/t-shirts",
-    title: "T-Shirts",
-  },
-  {
-    href: "/category/sweatshirts",
-    title: "Sweatshirts",
-  },
-  {
-    href: "/category/hoodies",
-    title: "Hoodies",
-  },
-  {
     href: "/contact",
-    title: "Contact",
+    title: "Contact Us",
+  },
+  {
+    href: "/cart",
+    title: "Cart",
+  },
+  {
+    href: "/about",
+    title: "About Us",
   },
 ];
 
@@ -142,21 +157,6 @@ export const carouselItems = [
   },
   {
     description: "Use code imnotalxn for 5% off",
-  },
-];
-
-export const filterItems = [
-  {
-    title: "T-Shirts",
-    href: "/category/t-shirts",
-  },
-  {
-    title: "Sweatshirts",
-    href: "/category/sweatshirts",
-  },
-  {
-    title: "Hoodies",
-    href: "/category/hoodies",
   },
 ];
 
@@ -230,23 +230,23 @@ export const detailedInformation = [
 
 export const Socials = [
   {
-    href: "https://www.facebook.com",
+    href: "https://www.facebook.com/alex.naltu.1/?locale=zh_CN",
     image: "/socials/facebook-icon.jpg",
   },
   {
-    href: "https://www.instagram.com",
+    href: "https://www.instagram.com/imnotalxn/",
     image: "/socials/Instagram-icon.jpg",
   },
   {
-    href: "https://www.tiktok.com",
+    href: "https://www.tiktok.com/@imhimalxn",
     image: "/socials/tiktok-icon.png",
   },
   {
-    href: "https://www.linkedin.com",
+    href: "https://www.linkedin.com/in/alex-naltu-2a391a275/",
     image: "/socials/linked-icon.png",
   },
   {
-    href: "https://www.youtube.com",
+    href: "https://www.youtube.com/@alxnreal/videos",
     image: "/socials/youtube-icon.png",
   },
 ];

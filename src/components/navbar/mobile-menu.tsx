@@ -9,38 +9,57 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button } from "../ui/button";
 import { LuMenu } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import { Input } from "../ui/input";
 import Link from "next/link";
-import { menuLinks } from "@/lib/constants";
+import { menuLinks, menuNavLinks } from "@/lib/constants";
 import Image from "next/image";
-import Searchbar from "../searchbar/searchbar";
+import { Separator } from "../ui/separator";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
 
 const MobileMenu = () => {
   return (
     <>
-      <Drawer>
+      <Drawer direction="left">
         <DrawerTrigger>
           <LuMenu size={33} />
         </DrawerTrigger>
-        <DrawerContent className="px-3">
+        <DrawerContent className="px-3 font-sans font-medium text-base bg-primary text-white max-w-[370px]">
           <DrawerHeader>
-            <DrawerClose className="flex items-center gap-1">
+            <DrawerClose className="ml-[13rem] min-[370px]:ml-[15.5rem]">
               <IoCloseSharp size={30} />
-              <p>Close</p>
             </DrawerClose>
-            <Searchbar />
-            <div className="flex flex-col text-2xl mt-5">
+            <h1 className="uppercase text-red-800">Products</h1>
+            <Separator className="w-full px-0" />
+            <div className="flex flex-col">
               {menuLinks.map((link) => (
-                <Link
-                  href={link.href}
-                  key={link.href}
-                  className="hover:text-primary transition-all duration-200 ease-in-out"
-                >
-                  {link.title}
-                </Link>
+                <div key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-red-800 transition-all duration-200 ease-in-out flex items-center justify-between"
+                  >
+                    <p className="py-2">{link.title}</p>
+                    <MdKeyboardArrowRight size={30} />
+                  </Link>
+                  <Separator />
+                </div>
+              ))}
+            </div>
+            <h1 className="uppercase text-red-800 mt-5 ">Links</h1>
+            <Separator className="w-full px-0" />
+            <div className="flex flex-col">
+              {menuNavLinks.map((link) => (
+                <div key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-red-800 transition-all duration-200 ease-in-out flex items-center justify-between"
+                  >
+                    <p className="py-2">{link.title}</p>
+                    <MdKeyboardArrowRight size={30} />
+                  </Link>
+                  <Separator />
+                </div>
               ))}
             </div>
           </DrawerHeader>

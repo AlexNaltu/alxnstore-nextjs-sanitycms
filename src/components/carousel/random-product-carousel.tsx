@@ -29,6 +29,7 @@ const RandomProductsCarousel = ({ products }: any) => {
             spaceBetween: 10,
           },
         }}
+        className="max-w-[1600px] mx-auto"
       >
         {products.map((product: IProduct) => (
           <SwiperSlide key={product._id}>

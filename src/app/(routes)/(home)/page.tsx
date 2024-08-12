@@ -68,21 +68,23 @@ export default async function Home() {
             </section>
           ))}
         </div>
-        <div className="bg-black text-white sm:flex">
-          <div className="pt-4 pb-1 px-3">
-            <h1 className="text-2xl min-[470px]:text-3xl">
-              Custom Design Solutions
+      </div>
+      <div className="bg-black text-white px-1">
+        <div className="max-w-[1600px]  sm:flex justify-between mx-auto">
+          <div className="pt-4 pb-1 ">
+            <h1 className="text-3xl min-[470px]:text-4xl lg:text-5xl">
+              Custom Design
             </h1>
-            <h4 className="text-lg text-secondary min-[470px]:text-xl">
+            <h4 className="text-lg bg-gradient-to-r from-slate-500 to-black min-[470px]:text-xl lg:text-2xl">
               You dream it, we design it
             </h4>
-            <p className="text-xs">
+            <p className="text-xs lg:text-sm">
               Do you want a custom t-shirt/hoodie/sweatshirt design? Contact us
               !
             </p>
             <Link
               href={"/products"}
-              className="flex gap-1 items-center mt-3 hover:text-secondary transition-all duration-300 ease-linear min-[470px]:text-lg"
+              className="flex gap-1 items-center mt-3 hover:text-slate-400 transition-all duration-300 ease-linear min-[470px]:text-lg lg:text-xl"
             >
               Contact Us <MdOutlineArrowRightAlt size={40} />
             </Link>
@@ -93,27 +95,20 @@ export default async function Home() {
               alt="banner"
               width={500}
               height={500}
-              className="pl-3 min-[470px]:aspect-video object-cover object-top sm:max-w-[350px]"
-            />
-            <Image
-              src="/design-img.png"
-              alt="banner"
-              width={500}
-              height={500}
-              className="hidden lg:inline-flex aspect-video object-cover object-top max-w-[350px] pl-3"
+              className="aspect-video object-cover object-top sm:max-w-[300px] md:pt-7"
             />
           </div>
         </div>
-        <div className="py-3 bg-black">
-          {randomProducts.map((item: IPlaylist) => (
-            <section key={item._id}>
-              <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl">
-                {item.title}
-              </h1>
-              <RandomProductsCarousel products={item.products} />
-            </section>
-          ))}
-        </div>
+      </div>
+      <div className="py-3 lg:py-6 lg:mb-10 bg-black">
+        {randomProducts.map((item: IPlaylist) => (
+          <section key={item._id}>
+            <h1 className="uppercase mb-4 font-bold tracking-tighter px-1 min-[470px]:text-xl sm:text-2xl">
+              {item.title}
+            </h1>
+            <RandomProductsCarousel products={item.products} />
+          </section>
+        ))}
       </div>
       <Newsletter />
     </>
