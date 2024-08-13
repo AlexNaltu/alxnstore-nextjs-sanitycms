@@ -82,12 +82,12 @@ export const menuNavLinks = [
     title: "Home",
   },
   {
-    href: "/contact",
-    title: "Contact Us",
-  },
-  {
     href: "/cart",
     title: "Cart",
+  },
+  {
+    href: "/contact-us",
+    title: "Contact Us",
   },
   {
     href: "/about",
@@ -133,7 +133,7 @@ export const footerLinks = [
   },
   {
     title: "Contact Us",
-    href: "/contact",
+    href: "/contact-us",
   },
   {
     title: "FAQs",
@@ -248,5 +248,20 @@ export const Socials = [
   {
     href: "https://www.youtube.com/@alxnreal/videos",
     image: "/socials/youtube-icon.png",
+  },
+];
+
+export const payments = [
+  {
+    image: "/payments/paypal.png",
+  },
+  {
+    image: "/payments/visa.png",
+  },
+  {
+    image: "/payments/revolut.png",
+  },
+  {
+    image: "/payments/klarna.png",
   },
 ];

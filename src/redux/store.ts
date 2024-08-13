@@ -36,12 +36,15 @@ const storage =
   typeof window !== "undefined"
     ? createWebStorage("local")
     : createPersistStore();
-
-// Configuration for redux-persist
-const persistConfig = { key: "root", version: 1, storage };
+// Configuration for redux-persist for the shopping slice
+const shoppingPersistConfig = {
+  key: "shopping",
+  version: 1,
+  storage,
+};
 
 // Create a persisted reducer
-const persistedReducer = persistReducer(persistConfig, shoppingReducer);
+const persistedReducer = persistReducer(shoppingPersistConfig, shoppingReducer);
 
 // Configure the Redux store
 export const store = configureStore({

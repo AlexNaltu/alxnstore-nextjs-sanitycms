@@ -51,7 +51,7 @@ const CartItem = () => {
                   </h1>
                   <GoTrash
                     onClick={() => dispatch(deleteProduct(item.size))}
-                    className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300"
+                    className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 w-fit"
                     size={25}
                   />
                 </div>

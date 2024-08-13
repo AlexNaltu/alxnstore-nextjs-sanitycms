@@ -60,7 +60,7 @@ export const shoppingSlice = createSlice({
 
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item) => item.size !== action.payload
+        (item) => item.color !== action.payload && item.size !== action.payload
       );
     },
 

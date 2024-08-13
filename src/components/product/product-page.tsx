@@ -13,8 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Newsletter from "@/components/newsletter/newsletter";
-import { MdFavorite } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -61,8 +59,6 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
     size: selectedVariant?.size,
     color: selectedColor,
   };
-
-  console.log(item);
 
   //get color style
   function getColorStyle(color: string) {
@@ -193,9 +189,6 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
             </Select>
           </div>
           <div className="flex items-center gap-3 max-w-sm">
-            <div className="bg-white p-[7px] rounded-sm hover:bg-red-600 transition-all duration-200 ease-in-out cursor-pointer">
-              <Image src="/favorite-icon.png" alt="/" width={30} height={30} />
-            </div>
             <Button
               className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full hover:bg-green-900"
               onClick={() =>
