@@ -128,7 +128,10 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
          price,
          variant_id  
        },
-      colors
+      colors[]->{
+        color,
+        colorId
+      }
     }`
     );
 
@@ -150,7 +153,10 @@ export const getRelatedProducts = async (category: string) => {
         "slug": slug.current,
         "thumbnail": thumbnail.asset->url,
         "variants": variants[]{ size, price, variant_id },
-        colors
+        colors[]->{
+        color,
+        colorId
+        }
       }`
     );
 

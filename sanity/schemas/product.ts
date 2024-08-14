@@ -88,15 +88,8 @@ export default defineType({
       type: "array",
       of: [
         {
-          type: "string",
-          title: "Color",
-          options: {
-            list: [
-              { title: "Red", value: "red" },
-              { title: "Blue", value: "blue" },
-              { title: "Green", value: "green" },
-            ],
-          },
+          type: "reference",
+          to: [{ type: "colors" }],
         },
       ],
     }),
