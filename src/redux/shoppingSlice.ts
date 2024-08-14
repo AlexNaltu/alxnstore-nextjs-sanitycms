@@ -23,7 +23,7 @@ export const shoppingSlice = createSlice({
         (item: IProduct) =>
           item._id === action.payload._id &&
           item?.size === action.payload.size &&
-          item?.color === action.payload.color
+          item?.color_ === action.payload.color_
       );
 
       if (existingProduct) {
@@ -38,7 +38,7 @@ export const shoppingSlice = createSlice({
         (item: IProduct) =>
           item._id === action.payload._id &&
           item?.size === action.payload.size &&
-          item?.color === action.payload.color
+          item?.color_ === action.payload.color_
       );
       existingProduct && existingProduct.quantity++;
     },
@@ -48,7 +48,7 @@ export const shoppingSlice = createSlice({
         (item: IProduct) =>
           item._id === action.payload._id &&
           item?.size === action.payload.size &&
-          item?.color === action.payload.color
+          item?.color_ === action.payload.color_
       );
 
       if (existingProduct?.quantity === 1) {
@@ -60,7 +60,8 @@ export const shoppingSlice = createSlice({
 
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item) => item.color !== action.payload && item.size !== action.payload
+        (item: IProduct) =>
+          item.color_ !== action.payload && item.size !== action.payload
       );
     },
 

@@ -10,7 +10,7 @@ export interface IProduct {
   images: string[];
   description: string;
   category: Category[];
-  colors: string[];
+  colors: IColors[];
   thumbnail: string;
   variants: IVariants[];
   slug: string;
@@ -18,9 +18,14 @@ export interface IProduct {
   variant_id: string;
   size: string;
   price: string;
-  color: string;
+  color_: string;
+  color_Id: string;
 }
 
+export interface IColors {
+  color: string;
+  colorId: string;
+}
 export interface IVariants {
   size: string;
   price: number;

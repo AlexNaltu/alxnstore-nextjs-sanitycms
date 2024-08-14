@@ -6,16 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { GoTrash } from "react-icons/go";
 import { CiHeart } from "react-icons/ci";
 import {
-  decreaseQuantity,
   deleteProduct,
-  increaseQuantity,
   resetCart,
   updateQuantity,
 } from "@/redux/shoppingSlice";
 import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);
@@ -55,7 +52,7 @@ const CartItem = () => {
                     size={25}
                   />
                 </div>
-                <p>Color: {item.color}</p>
+                <p>Color: {item.color_}</p>
                 <p>Size: {item.size}</p>
 
                 <div className="flex gap-3">

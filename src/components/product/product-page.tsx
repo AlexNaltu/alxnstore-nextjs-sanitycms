@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { detailedInformation, itemDescription } from "@/lib/constants";
 import { formatPriceInEUR } from "@/lib/formatPrice";
-import { IProduct, IVariants } from "@/types/product-types";
+import { IColors, IProduct, IVariants } from "@/types/product-types";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -39,6 +39,8 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
 
+  console.log(Object.values(product.colors));
+
   const handleVariantChange = (variant: IVariants) => {
     setSelectedVariant(variant);
   };
@@ -57,12 +59,16 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
     price: selectedVariant?.price,
     url: `/products/${product?.slug}`,
     size: selectedVariant?.size,
-    color: selectedColor,
+    color_: selectedColor.color,
+    color_Id: selectedColor.colorId,
+    variant_id: selectedVariant?.variant_id,
   };
 
+  console.log(item);
+
   //get color style
-  function getColorStyle(color: string) {
-    switch (color) {
+  function getColorStyle(color: IColors) {
+    switch (color.color) {
       case "red":
         return "bg-red-500";
       case "blue":
@@ -153,19 +159,19 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
               ))}
             </div>
             <div className="flex gap-2 md:gap-4">
-              {product?.colors.map((color) => (
-                <div
-                  key={color}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => setSelectedColor(color)}
-                  className={cn(
-                    getColorStyle(color),
-                    selectedColor === color
-                      ? "border-4 border-white rounded-full w-7 h-7 cursor-pointer"
-                      : "rounded-full w-7 h-7 cursor-pointer"
-                  )}
-                ></div>
+              {product.colors.map((color) => (
+                <div key={color.colorId}>
+                  <button
+                    className={cn(
+                      "h-8 w-8 rounded-full",
+                      getColorStyle(color),
+                      selectedColor.colorId === color.colorId
+                        ? "border-2 border-black"
+                        : ""
+                    )}
+                    onClick={() => setSelectedColor(color)}
+                  ></button>
+                </div>
               ))}
             </div>
           </div>

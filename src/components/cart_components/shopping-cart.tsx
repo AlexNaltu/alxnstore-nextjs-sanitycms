@@ -89,6 +89,7 @@ const ShoppingCart = () => {
     }
   };
 
+  console.log(productData);
   return (
     <>
       <div className="max-w-[1000px] mx-auto">
