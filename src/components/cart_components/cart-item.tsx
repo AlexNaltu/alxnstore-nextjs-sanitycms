@@ -13,6 +13,7 @@ import {
 import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import dynamic from "next/dynamic";
+import toast, { Toaster } from "react-hot-toast";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);
@@ -48,7 +49,8 @@ const CartItem = () => {
                   </h1>
                   <GoTrash
                     onClick={() =>
-                      dispatch(deleteProduct(item.size && item.color_Id))
+                      dispatch(deleteProduct(item.size && item.color_Id)) &&
+                      toast.error("Item removed from cart")
                     }
                     className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 w-fit"
                     size={25}
@@ -83,6 +85,7 @@ const CartItem = () => {
             </div>
           ))}
         </div>
+        <Toaster position="top-center" />
       </div>
     </>
   );
