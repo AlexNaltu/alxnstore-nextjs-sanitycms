@@ -43,7 +43,7 @@ export default async function ProductSPage() {
             </li>
             <li>We deliver only in Europe</li>
             <li className="font-semibold">
-              The average delivery time for orders is approximately 5-10
+              The average delivery time for orders is approximately 3-10
               business days
             </li>
           </ul>

@@ -23,7 +23,8 @@ export const shoppingSlice = createSlice({
         (item: IProduct) =>
           item._id === action.payload._id &&
           item?.size === action.payload.size &&
-          item?.color_ === action.payload.color_
+          item?.color_ === action.payload.color_ &&
+          item?.variant_id === action.payload.variant_id
       );
 
       if (existingProduct) {
@@ -60,7 +61,11 @@ export const shoppingSlice = createSlice({
 
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item: IProduct) => item.size && item.color_Id !== action.payload
+        (item: IProduct) =>
+          item.size &&
+          item.color_Id &&
+          item.variant_id &&
+          item.color_ !== action.payload
       );
       return state;
     },
