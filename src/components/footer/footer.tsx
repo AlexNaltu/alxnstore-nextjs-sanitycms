@@ -7,7 +7,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-black mt-10 lg:mt-20 site_footer w-full">
-      <Link href="/">
+      <Link href="/" className=" max-w-[200px] cursor-pointer">
         <Image
           src="/logo.svg"
           alt="logo"

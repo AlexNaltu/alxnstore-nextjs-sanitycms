@@ -62,7 +62,7 @@ const ContactForm = () => {
         )}
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="">Full Name</label>
+        <label htmlFor="">How can we help you?</label>
         <Textarea {...register("message")} placeholder="Your Name" />
         {errors.user_name && (
           <span>{errors.message!.message as ReactNode}</span>

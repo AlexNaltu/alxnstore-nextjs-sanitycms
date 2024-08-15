@@ -49,8 +49,14 @@ const CartItem = () => {
                   </h1>
                   <GoTrash
                     onClick={() =>
-                      dispatch(deleteProduct(item.size && item.color_Id)) &&
-                      toast.error("Item removed from cart")
+                      dispatch(
+                        deleteProduct(
+                          item.size &&
+                            item.color_Id &&
+                            item.variant_id &&
+                            item.color_
+                        )
+                      ) && toast.error("Item removed from cart")
                     }
                     className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 w-fit"
                     size={25}
