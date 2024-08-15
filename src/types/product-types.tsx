@@ -42,12 +42,6 @@ export interface StateProps {
   };
 }
 
-export interface FavoriteProps {
-  favorite: {
-    favoriteData: IProduct[];
-  };
-}
-
 export interface Category {
   category: string;
 }

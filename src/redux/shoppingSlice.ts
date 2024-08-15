@@ -60,9 +60,9 @@ export const shoppingSlice = createSlice({
 
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
-        (item: IProduct) =>
-          item.color_ !== action.payload && item.size !== action.payload
+        (item: IProduct) => item.size && item.color_Id !== action.payload
       );
+      return state;
     },
 
     resetCart: (state) => {

@@ -31,7 +31,7 @@ const CartItem = () => {
         <div className="flex flex-col gap-8 w-full my-3">
           {productData.map((item: IProduct) => (
             <div
-              key={item._id}
+              key={`${item._id}-${item.size}-${item.color_}-${item.quantity}`}
               className="flex font-sans text-slate-500 gap-1 "
             >
               <Image
@@ -47,7 +47,9 @@ const CartItem = () => {
                     {item.name}
                   </h1>
                   <GoTrash
-                    onClick={() => dispatch(deleteProduct(item.size))}
+                    onClick={() =>
+                      dispatch(deleteProduct(item.size && item.color_Id))
+                    }
                     className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 w-fit"
                     size={25}
                   />

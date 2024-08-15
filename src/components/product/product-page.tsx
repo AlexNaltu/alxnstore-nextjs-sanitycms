@@ -64,8 +64,6 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
     variant_id: selectedVariant?.variant_id,
   };
 
-  console.log(item);
-
   //get color style
   function getColorStyle(color: IColors) {
     switch (color.color) {
