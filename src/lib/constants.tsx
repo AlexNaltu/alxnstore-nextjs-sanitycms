@@ -253,10 +253,10 @@ export const Socials = [
 
 export const payments = [
   {
-    image: "/payments/paypal.png",
+    image: "/payments/visa.png",
   },
   {
-    image: "/payments/visa.png",
+    image: "/payments/paypal.png",
   },
   {
     image: "/payments/revolut.png",
