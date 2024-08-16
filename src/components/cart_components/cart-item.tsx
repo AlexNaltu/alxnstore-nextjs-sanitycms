@@ -14,6 +14,7 @@ import { Input } from "../ui/input";
 import { formatPriceInEUR } from "@/lib/formatPrice";
 import dynamic from "next/dynamic";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 const CartItem = () => {
   const { productData } = useSelector((state: StateProps) => state.shopping);
@@ -32,16 +33,18 @@ const CartItem = () => {
         <div className="flex flex-col gap-8 w-full my-3">
           {productData.map((item: IProduct) => (
             <div
-              key={`${item._id}-${item.size}-${item.color_}-${item.quantity}`}
+              key={`${item._id}`}
               className="flex font-sans text-slate-500 gap-1 "
             >
-              <Image
-                src={item.thumbnail}
-                alt={item.name}
-                width={1000}
-                height={1000}
-                className="max-w-[45%] min-[470px]:max-w-[200px] aspect-square object-contain self-start"
-              />
+              <Link href={item.url}>
+                <Image
+                  src={item.thumbnail}
+                  alt={item.name}
+                  width={1000}
+                  height={1000}
+                  className="max-w-[45%] min-[470px]:max-w-[200px] aspect-square object-contain self-start"
+                />
+              </Link>
               <div className="text-xs flex flex-col gap-1 text-white">
                 <div className="flex items-center gap-10 ">
                   <h1 className="font-bold uppercase line-clamp-2 lg:text-lg">

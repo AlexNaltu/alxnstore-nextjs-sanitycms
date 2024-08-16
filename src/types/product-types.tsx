@@ -20,6 +20,7 @@ export interface IProduct {
   price: string;
   color_: string;
   color_Id: string;
+  url: string;
 }
 
 export interface IColors {
