@@ -106,7 +106,7 @@ export const legalDocs = [
     title: "Privacy Policy",
   },
   {
-    href: "/refund",
+    href: "/refund-and-return",
     title: "Refund and Return",
   },
   {
