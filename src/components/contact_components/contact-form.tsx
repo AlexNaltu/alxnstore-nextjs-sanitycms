@@ -9,6 +9,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
+// Define the schema for the form
 const userSchema = z.object({
   user_name: z.string(),
   user_email: z.string().email(),
@@ -16,6 +17,7 @@ const userSchema = z.object({
 });
 
 const ContactForm = () => {
+  // Create a reference for the form and router
   const ref: any = useRef();
   const router = useRouter();
   const {
@@ -24,6 +26,7 @@ const ContactForm = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(userSchema) });
 
+  // Handle form submission
   const onSubmit = (data: any) => {
     emailjs
       .sendForm(

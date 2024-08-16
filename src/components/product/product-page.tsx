@@ -27,19 +27,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useQuery } from "@tanstack/react-query";
+import { getRelatedProducts } from "@/actions/actions";
 
 interface Props {
   product: IProduct;
-  relatedProducts: IProduct[];
 }
 
-const ProductPage = ({ product, relatedProducts }: Props) => {
+const ProductPage = ({ product }: Props) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-
-  console.log(Object.values(product.colors));
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["relatedProduct"],
+    queryFn: async () => {
+      //@ts-ignore
+      const relatedProduct = await getRelatedProducts(product.category[0]);
+      return relatedProduct;
+    },
+  });
 
   const handleVariantChange = (variant: IVariants) => {
     setSelectedVariant(variant);
@@ -249,70 +256,72 @@ const ProductPage = ({ product, relatedProducts }: Props) => {
         More From This Category
       </h2>
 
-      <Swiper
-        slidesPerView={2}
-        spaceBetween={10}
-        loop={true}
-        breakpoints={{
-          470: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          640: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 10,
-          },
-        }}
-      >
-        {relatedProducts.map((product: IProduct) => (
-          <SwiperSlide key={product._id}>
-            <Card className="rounded-none border-none custom-shadow mb-2">
-              <CardHeader>
-                <Link href={`/products/${product.slug}`}>
-                  <Image
-                    src={product.thumbnail}
-                    alt={product.name}
-                    width={1000}
-                    height={1000}
-                    className="object-cover "
-                  />
-                </Link>
-              </CardHeader>
-              <CardContent className="tracking-tighter font-bold px-1">
-                <div>
-                  <h1 className="text-base lg:text-lg line-clamp-1 md:text-xl">
-                    {product.name}
-                  </h1>
+      {data && (
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={10}
+          loop={true}
+          breakpoints={{
+            470: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 10,
+            },
+          }}
+        >
+          {data.map((product: IProduct) => (
+            <SwiperSlide key={product._id}>
+              <Card className="rounded-none border-none custom-shadow mb-2">
+                <CardHeader>
+                  <Link href={`/products/${product.slug}`}>
+                    <Image
+                      src={product.thumbnail}
+                      alt={product.name}
+                      width={1000}
+                      height={1000}
+                      className="object-cover "
+                    />
+                  </Link>
+                </CardHeader>
+                <CardContent className="tracking-tighter font-bold px-1">
                   <div>
-                    {product.variants.length > 0 && (
-                      <div key={product.variants[0].variant_id}>
-                        <p className="text-xs md:text-sm font-light text-gray-500">
-                          from
-                          <span className="text-base text-black px-1 md:text-lg">
-                            {formatPriceInEUR(product.variants[0].price)}
-                          </span>
-                        </p>
-                        <div className="pb-2">
-                          <Link
-                            href={`/products/${product.slug}`}
-                            className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
-                          >
-                            Choose options
-                          </Link>
+                    <h1 className="text-base lg:text-lg line-clamp-1 md:text-xl">
+                      {product.name}
+                    </h1>
+                    <div>
+                      {product.variants.length > 0 && (
+                        <div key={product.variants[0].variant_id}>
+                          <p className="text-xs md:text-sm font-light text-gray-500">
+                            from
+                            <span className="text-base text-black px-1 md:text-lg">
+                              {formatPriceInEUR(product.variants[0].price)}
+                            </span>
+                          </p>
+                          <div className="pb-2">
+                            <Link
+                              href={`/products/${product.slug}`}
+                              className="text-base text-primary underline hover:text-black transition-all duration-300 ease-in-out lg:text-lg"
+                            >
+                              Choose options
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+                </CardContent>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
       <Toaster position="bottom-right" />
     </div>

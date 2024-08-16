@@ -12,7 +12,7 @@ const SearchResults = ({ result }: ResultsProps) => {
   return (
     <div className="w-full bg-white hover:bg-secondary transition-all duration-500 ease-in-out">
       <Link
-        href={`/products/${result._id}`}
+        href={`/products/${result.slug}`}
         className="flex items-center justify-between"
       >
         <Image src={result.thumbnail} alt="/" width={150} height={150} />
