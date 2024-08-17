@@ -1,7 +1,7 @@
 import { privacyPolicy, termsOfUse } from "@/lib/constants";
 import React from "react";
 
-const TermsOfUse = () => {
+const PrivacyPolicyPage = () => {
   return (
     <div className="max-w-[1000px] mx-auto text-white flex flex-col gap-2 my-3 sm:my-5 md:my-7  px-2">
       <h1 className="text-3xl underline mb-4">Privacy Policy</h1>
@@ -28,4 +28,4 @@ const TermsOfUse = () => {
   );
 };
 
-export default TermsOfUse;
+export default PrivacyPolicyPage;

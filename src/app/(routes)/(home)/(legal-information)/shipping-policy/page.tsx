@@ -1,7 +1,7 @@
 import { privacyPolicy, refundPolicy, termsOfUse } from "@/lib/constants";
 import React from "react";
 
-const RefundAndReturnPage = () => {
+const ShippingPolicyPage = () => {
   return (
     <div className="max-w-[1000px] mx-auto text-white flex flex-col gap-2 my-3 sm:my-5 md:my-7  px-2">
       <h1 className="text-3xl underline mb-4">Return and Refund</h1>
@@ -27,4 +27,4 @@ const RefundAndReturnPage = () => {
   );
 };
 
-export default RefundAndReturnPage;
+export default ShippingPolicyPage;

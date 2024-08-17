@@ -450,11 +450,79 @@ export const refundPolicy = [
     item2: "",
     item3: "",
   },
+];
+
+export const shippingPolicy = [
   {
-    title: "Customer Service",
+    title: "Shipping Fees",
     item1:
-      "If you have any questions or need further assistance, please contact our customer service team:",
-    item2: "Phone Number: +49 1515 7491907",
+      "Shipping fees are calculated based on the shipping method and the total purchase amount.",
+    item2:
+      "Standard Shipping: €5 for the first item, plus an additional €1 for each extra item in the order.",
+    item3: "",
+  },
+  {
+    title: "Shipping Methods",
+    item1:
+      "Shipping methods and their associated costs will be calculated at checkout based on the total purchase amount.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Third-Party Suppliers",
+    item1:
+      "We partner with third-party suppliers to manage and deliver your orders.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "International Shipping",
+    item1: "We offer international shipping to most countries in Europe",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Delayed Orders",
+    item1:
+      "In the event of a delay, we will notify you via email or phone with an updated expected delivery date. If the delay exceeds a reasonable timeframe, you may cancel your order for a full refund.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Order Pickups",
+    item1: "We do not offer in-store or curbside pickups.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Shipping Restrictions",
+    item1: "There are no specific shipping restrictions at this time.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Contact Information",
+    item1:
+      "If you have any questions or concerns regarding our Shipping Policy, you can contact us via:",
+    item2: "Phone: +49 1515 7491907",
     item3: "Email: alxnbusiness1@gmail.com",
+    link: {
+      title: "Contact Us Form",
+      href: "/contact-us",
+    },
+  },
+  {
+    title: "Terms and Conditions",
+    item1:
+      "Please review our Terms of Use for more detailed information regarding our terms and conditions.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Return Policy",
+    item1:
+      "For information on how to return items, please review our Return Policy.",
+    item2: "",
+    item3: "",
   },
 ];
