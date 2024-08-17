@@ -1,11 +1,12 @@
-import { privacyPolicy, refundPolicy, termsOfUse } from "@/lib/constants";
+import { shippingPolicy } from "@/lib/constants";
+import Link from "next/link";
 import React from "react";
 
 const ShippingPolicyPage = () => {
   return (
     <div className="max-w-[1000px] mx-auto text-white flex flex-col gap-2 my-3 sm:my-5 md:my-7  px-2">
-      <h1 className="text-3xl underline mb-4">Return and Refund</h1>
-      {refundPolicy.map((item, i) => (
+      <h1 className="text-3xl underline mb-4">Shipping Policy</h1>
+      {shippingPolicy.map((item, i) => (
         <div key={i} className="flex flex-col gap-2">
           <h1 className="text-xl font-bold">{item.title}</h1>
           <div>

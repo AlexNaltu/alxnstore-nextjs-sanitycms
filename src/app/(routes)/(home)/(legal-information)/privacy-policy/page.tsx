@@ -1,4 +1,4 @@
-import { privacyPolicy, termsOfUse } from "@/lib/constants";
+import { privacyPolicy } from "@/lib/constants";
 import React from "react";
 
 const PrivacyPolicyPage = () => {

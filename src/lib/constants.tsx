@@ -110,7 +110,7 @@ export const legalDocs = [
     title: "Refund and Return",
   },
   {
-    href: "/shipping",
+    href: "/shipping-policy",
     title: "Shipping Policy",
   },
   {
@@ -499,17 +499,6 @@ export const shippingPolicy = [
     item1: "There are no specific shipping restrictions at this time.",
     item2: "",
     item3: "",
-  },
-  {
-    title: "Contact Information",
-    item1:
-      "If you have any questions or concerns regarding our Shipping Policy, you can contact us via:",
-    item2: "Phone: +49 1515 7491907",
-    item3: "Email: alxnbusiness1@gmail.com",
-    link: {
-      title: "Contact Us Form",
-      href: "/contact-us",
-    },
   },
   {
     title: "Terms and Conditions",
