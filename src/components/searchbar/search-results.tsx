@@ -10,7 +10,7 @@ interface ResultsProps {
 
 const SearchResults = ({ result }: ResultsProps) => {
   return (
-    <div className="w-full bg-white hover:bg-secondary transition-all duration-500 ease-in-out">
+    <div className="w-full bg-white hover:bg-primary hover:text-white transition-all duration-500 ease-in-out">
       <Link
         href={`/products/${result.slug}`}
         className="flex items-center justify-between"
