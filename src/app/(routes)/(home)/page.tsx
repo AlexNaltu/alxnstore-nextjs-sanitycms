@@ -83,7 +83,7 @@ export default async function Home() {
               !
             </p>
             <Link
-              href={"/products"}
+              href={"/contact-us"}
               className="flex gap-1 items-center mt-3 hover:text-slate-400 transition-all duration-300 ease-linear min-[470px]:text-lg lg:text-xl"
             >
               Contact Us <MdOutlineArrowRightAlt size={40} />
