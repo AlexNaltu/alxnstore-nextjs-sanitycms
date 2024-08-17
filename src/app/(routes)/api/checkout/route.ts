@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest) => {
         images: [item.thumbnail],
         metadata: {
           size: item.size,
-          color: item.color,
+          color: item.color_,
         },
       },
     },
@@ -27,7 +27,7 @@ export const POST = async (req: NextRequest) => {
     external_variant_id: item.variant_id,
     quantity: item.quantity,
     size: item.size,
-    color: item.color,
+    color: item.color_,
   }));
 
   try {
