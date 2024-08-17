@@ -114,7 +114,7 @@ export const legalDocs = [
     title: "Shipping Policy",
   },
   {
-    href: "/cookie",
+    href: "/cookie-policy",
     title: "Cookie Policy",
   },
   {
@@ -511,6 +511,78 @@ export const shippingPolicy = [
     title: "Return Policy",
     item1:
       "For information on how to return items, please review our Return Policy.",
+    item2: "",
+    item3: "",
+  },
+];
+
+export const cookiePolicy = [
+  {
+    title: "Introduction",
+    item1:
+      "At AlxnStore, we use cookies to improve your browsing experience on our website. This Cookie Policy explains what cookies are, how we use them, and how you can manage them.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "What Are Cookies?",
+    item1:
+      "Cookies are small text files that are stored on your device when you visit a website. They help websites remember information about your visit, like your preferred language and other settings.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Types of Cookies We Use",
+    item1:
+      "Essential Cookies: These cookies are necessary for the website to function correctly. They enable basic features like page navigation and access to secure areas of the site.",
+    item2:
+      "Performance Cookies: These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve the website’s performance.",
+    item3:
+      "Functionality Cookies: These cookies allow our website to remember choices you make, such as your username or region, and provide enhanced, more personal features.",
+  },
+  {
+    title: "Managing Cookies",
+    item1:
+      "You can control and manage cookies through your browser settings. Please note that disabling essential cookies may affect the functionality of our website.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Changes to This Cookie Policy",
+    item1:
+      "We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Please review this page periodically for the latest information.",
+    item2: "",
+    item3: "",
+  },
+];
+
+export const disclaimer = [
+  {
+    title: "General Information",
+    item1:
+      "The information provided by AlxnBusiness  on www.alxnstore.com  is for general informational purposes only. All information on the Site is provided in good faith. However, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "External Links Disclaimer",
+    item1:
+      "The Site may contain (or you may be sent through the Site) links to other websites or content belonging to or originating from third parties or links to websites and features in banners or other advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us.",
+    item2:
+      "We do not warrant, endorse, guarantee, or assume responsibility for the accuracy or reliability of any information offered by third-party websites linked through the Site or any website or feature linked in any banner or other advertising. We will not be a party to or in any way responsible for monitoring any transaction between you and third-party providers of products or services.",
+    item3: "",
+  },
+  {
+    title: "Limitation of Liability",
+    item1:
+      "In no event shall AlxnBusiness or our directors, employees, or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special, or punitive damages, including lost profit damages arising from your use of the Site, even if we have been advised of the possibility of such damages.",
+    item2: "",
+    item3: "",
+  },
+  {
+    title: "Changes to This Disclaimer",
+    item1:
+      "We reserve the right to update or change this Disclaimer at any time, and you should check this Disclaimer periodically. Your continued use of the Site after we post any modifications to the Disclaimer on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Disclaimer.",
     item2: "",
     item3: "",
   },

@@ -1,11 +1,11 @@
-import { cookiePolicy } from "@/lib/constants";
+import { disclaimer } from "@/lib/constants";
 import React from "react";
 
-const CookiePolicyPage = () => {
+const DisclaimerPage = () => {
   return (
     <div className="max-w-[1000px] mx-auto text-white flex flex-col gap-2 my-3 sm:my-5 md:my-7  px-2">
-      <h1 className="text-3xl underline mb-4">Cookie Policy</h1>
-      {cookiePolicy.map((item, i) => (
+      <h1 className="text-3xl underline mb-4">Disclaimer</h1>
+      {disclaimer.map((item, i) => (
         <div key={i} className="flex flex-col gap-2">
           <h1 className="text-xl font-bold">{item.title}</h1>
           <div>
@@ -28,4 +28,4 @@ const CookiePolicyPage = () => {
   );
 };
 
-export default CookiePolicyPage;
+export default DisclaimerPage;
