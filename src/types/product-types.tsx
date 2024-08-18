@@ -21,6 +21,7 @@ export interface IProduct {
   color_: string;
   color_Id: string;
   url: string;
+  created_at: string;
 }
 
 export interface IColors {

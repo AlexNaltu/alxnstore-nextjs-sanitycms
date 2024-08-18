@@ -104,6 +104,8 @@ export const getAllProducts = async () => {
          price,
          variant_id  
        },
+        created_at,
+
     }`);
 
     return { success: data };
@@ -131,7 +133,7 @@ export const getProductBySlug = async ({ slug }: SlugProps) => {
       colors[]->{
         color,
         colorId
-      }
+      },
     }`
     );
 

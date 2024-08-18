@@ -101,5 +101,10 @@ export default defineType({
         source: "name",
       },
     }),
+    defineField({
+      name: "created_at",
+      title: "Created At",
+      type: "datetime",
+    }),
   ],
 });
