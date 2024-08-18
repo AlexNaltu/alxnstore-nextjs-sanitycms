@@ -1,10 +1,59 @@
-import { getProductBySlug, getRelatedProducts } from "@/actions/actions";
+import {
+  getAllProducts,
+  getProductBySlug,
+  getRelatedProducts,
+} from "@/actions/actions";
 import Newsletter from "@/components/newsletter/newsletter";
 import ProductPage from "@/components/product/product-page";
 import { getQueryClient } from "@/lib/query";
-import { Category, IProduct } from "@/types/product-types";
+import { IProduct } from "@/types/product-types";
 import { HydrationBoundary } from "@tanstack/react-query";
-import React from "react";
+import { Metadata } from "next";
+
+// product metadata for SEO
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  try {
+    const product = await getProductBySlug({ slug: params.slug });
+
+    return {
+      title: product.name,
+      keywords: product.name,
+      openGraph: {
+        images: [
+          {
+            url: product.thumbnail,
+            width: 800,
+            height: 600,
+            alt: product.name,
+          },
+        ],
+      },
+    };
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
+
+// array of object that contains the slug of each product
+export async function generateStaticParams() {
+  try {
+    const products = await getAllProducts();
+
+    if (!products.success) {
+      throw new Error("Failed to fetch products");
+    }
+
+    return products.success.map((product: IProduct) => ({
+      slug: product.slug,
+    }));
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
 
 const Product = async ({ params }: { params: { slug: string } }) => {
   const product: IProduct = await getProductBySlug({ slug: params.slug });
