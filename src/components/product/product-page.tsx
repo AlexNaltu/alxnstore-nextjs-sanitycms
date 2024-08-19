@@ -97,6 +97,7 @@ const ProductPage = ({ product }: Props) => {
               width={1000}
               height={1000}
               className="mx-auto my-3 lg:my-6 aspect-square object-cover rounded-sm"
+              priority
             />
           </div>
           <div className="flex justify-center gap-1 min-[470px]:gap-4 min-[470px]:max-w-sm sm:flex-col sm:max-w-[150px] lg:self-start lg:pt-7 mx-auto">

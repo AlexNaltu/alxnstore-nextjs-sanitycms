@@ -22,6 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               width={1000}
               height={1000}
               className="object-cover "
+              loading="lazy"
             />
           </Link>
         </CardHeader>

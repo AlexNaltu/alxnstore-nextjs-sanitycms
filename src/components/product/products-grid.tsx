@@ -48,7 +48,9 @@ const ProductsGrid = () => {
   const offset = currentPage * itemsPerPage;
 
   // Paginate the filtered products list
-  const paginatedData = filtered.slice(offset, offset + itemsPerPage);
+  const paginatedData = filtered
+    ? filtered.slice(offset, offset + itemsPerPage)
+    : data?.slice(offset, offset + itemsPerPage);
 
   console.log(paginatedData);
 
