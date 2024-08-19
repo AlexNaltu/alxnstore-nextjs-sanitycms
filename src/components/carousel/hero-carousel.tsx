@@ -31,7 +31,6 @@ const HeroCarousel = () => {
             alt={"/"}
             width={3000}
             height={1000}
-            priority
           />
         ))}
       </Carousel>
@@ -53,7 +52,6 @@ const HeroCarousel = () => {
             alt={"/"}
             width={3000}
             height={1000}
-            priority
           />
         ))}
       </Carousel>
@@ -75,7 +73,6 @@ const HeroCarousel = () => {
             alt={"/"}
             width={3000}
             height={1000}
-            priority
           />
         ))}
       </Carousel>

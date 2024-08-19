@@ -46,11 +46,11 @@ export const categoryItems = [
   },
   {
     href: "/products",
-    image: "/categories/bestsellers.png",
+    image: "/categories/all-products.png",
   },
   {
     href: "/products?category=Sweatshirts",
-    image: "/categories/sweatshirt.png",
+    image: "/categories/sweatshirts.png",
   },
   {
     href: "/products?category=Hoodies",

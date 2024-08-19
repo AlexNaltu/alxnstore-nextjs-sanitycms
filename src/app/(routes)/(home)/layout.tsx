@@ -6,10 +6,9 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import ReduxProvider from "@/providers/redux-provider";
 import QueryProvider from "@/providers/query-client-provider";
-import { CartProvider } from "use-shopping-cart";
 import Clerk from "@/providers/clerk-provider";
 
-const inter = Maven_Pro({ subsets: ["latin"], weight: "900" });
+const maven = Maven_Pro({ subsets: ["latin"], weight: "900" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alxnstore.shop"),
@@ -33,25 +32,15 @@ export default function RootLayout({
     <Clerk>
       <html lang="en">
         <body
-          className={`${inter.className} flex flex-col min-h-screen w-full bg-primary`}
+          className={`${maven.className} flex flex-col min-h-screen w-full bg-primary`}
         >
           <ReduxProvider>
-            <CartProvider
-              cartMode="client-only"
-              stripe=""
-              currency="EUR"
-              shouldPersist={true}
-              mode="payment"
-              successUrl="/success"
-              cancelUrl="/cancel"
-            >
-              <QueryProvider>
-                <TopCarousel />
-                <Navbar />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </QueryProvider>
-            </CartProvider>
+            <QueryProvider>
+              <TopCarousel />
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </QueryProvider>
           </ReduxProvider>
         </body>
       </html>
