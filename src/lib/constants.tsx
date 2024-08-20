@@ -220,7 +220,7 @@ export const detailedInformation = [
     },
   },
   {
-    name: "Fabric Blends",
+    title: "Fabric Blends",
     details: {
       item1: "- Heather colors: 35% ring-spun cotton, 65% polyester",
       item2: "- Sport Grey and Antique colors: 90% cotton, 10% polyester",
@@ -292,7 +292,6 @@ export const termsOfUse = [
     title: "Prohibited Activities",
     item1:
       "By using our Website, you agree not to engage in any of the following prohibited activities: ",
-
     item2:
       "Use bots or automated methods to interact with the platform / Advertise or offer to sell goods and services not authorized by us / Sell or otherwise transfer your user account",
   },
@@ -300,7 +299,6 @@ export const termsOfUse = [
     title: "Platform Content",
     item1:
       "All content provided on the Website, including product descriptions, images, and designs, is owned by AlxnBusiness. Users are prohibited from uploading or posting their own content, such as comments, reviews, or media files.",
-    item2: "",
   },
   {
     title: "Third-Party Websites",
