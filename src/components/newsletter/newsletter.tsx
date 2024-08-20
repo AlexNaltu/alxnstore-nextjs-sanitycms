@@ -15,22 +15,23 @@ const requiredSchema = z.object({
   email: z.string().email("Invalid email address"),
 });
 
+type FormData = z.infer<typeof requiredSchema>;
+
 const Newsletter = () => {
   const [status, setStatus] = useState<number | null>(null);
   const [message, setMessage] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const [run, setRun] = useState<boolean>(false);
   const [totalCounts, setTotalCounts] = useState<number>(400);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(requiredSchema) });
+  } = useForm<FormData>({ resolver: zodResolver(requiredSchema) });
 
   // Handle form submission and send the email to the server
-  const onSubmit = async () => {
+  const onSubmit = async (data: FormData) => {
     setButtonDisabled(true);
     try {
       const response = await fetch("/api/newsletter", {
@@ -38,11 +39,12 @@ const Newsletter = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: "email" }),
+        body: JSON.stringify({ email: data.email }),
       });
-      const data = await response.json();
-      if (data.status >= 400) {
-        setStatus(data.status);
+
+      const responseData = await response.json();
+      if (responseData.status >= 400) {
+        setStatus(responseData.status);
         setMessage(
           "Error joining the newsletter. You can directly contact me at alxnbusiness1@gmail.com"
         );
@@ -52,6 +54,7 @@ const Newsletter = () => {
         }, 2000);
         return;
       }
+
       setStatus(201);
       setMessage("Successfully joined the newsletter");
       setTimeout(() => {
@@ -72,6 +75,14 @@ const Newsletter = () => {
     }
   };
 
+  // Handle the submit button click
+  const submittingClick = () => {
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 2000);
+  };
+
   return (
     <>
       <div className="tracking-tighter sm:my-10 text-white custom-bg pt-14 lg:pt-16 min-[1500px]:pt-24">
@@ -82,23 +93,23 @@ const Newsletter = () => {
           <h2 className=" text-[17px] min-[470px]:text-base sm:text-lg">
             Stay Updated with Our Latest Products
           </h2>
-          <form
-            className="flex flex-col gap-2 min-[450px]:flex-row min-[450px]:items-center mt-3 max-w-[600px]"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Input
-              placeholder="Enter your email"
-              className="rounded-none  border-black max-w-[500px] text-black"
-              type="email"
-              {...register("email")}
-            />
-            <Button
-              disabled={buttonDisabled}
-              type="submit"
-              className="text-black bg-white hover:text-white hover:bg-black hover:border-white border-2 transition-all ease-linear duration-200 uppercase tracking-tighter w-fit rounded-sm"
-            >
-              {submitting ? "Submitting" : "Submit"}
-            </Button>
+          <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-2 min-[450px]:flex-row min-[450px]:items-center mt-3 max-w-[600px]">
+              <Input
+                placeholder="Enter your email"
+                className="rounded-none  border-black max-w-[500px] text-black"
+                type="email"
+                {...register("email")}
+              />
+              <Button
+                disabled={buttonDisabled}
+                type="submit"
+                onClick={() => submittingClick()}
+                className="text-black bg-white hover:text-white hover:bg-black hover:border-white border-2 transition-all ease-linear duration-200 uppercase tracking-tighter w-fit rounded-sm"
+              >
+                {submitting ? "Submitting" : "Submit"}
+              </Button>
+            </div>
             {message && (
               <p
                 className={`${status !== 201 ? "text-red-500" : "text-green-500"} font-black`}

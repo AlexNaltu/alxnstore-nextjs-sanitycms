@@ -44,7 +44,7 @@ const FeaturedCarousel = ({ products }: IFeaturedCarousel) => {
                     alt={product.name}
                     width={1000}
                     height={1000}
-                    className="object-cover "
+                    className="object-cover max-h-[200px]"
                   />
                 </Link>
               </CardHeader>
