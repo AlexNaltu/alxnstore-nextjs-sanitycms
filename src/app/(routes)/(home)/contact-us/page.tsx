@@ -12,8 +12,8 @@ const ContactPage = () => {
         <div className="mt-4">
           <h1 className="text-3xl md:text-4xl">Contact Us</h1>
           <p className="text-sm text-slate-500 md:text-base">
-            Do you have any questions or need help? Don't hesitate to contact us
-            for anything you need.
+            Do you have any questions or need help? Don &#39; t hesitate to
+            contact us for anything you need.
           </p>
         </div>
         <div className="sm:flex flex-row-reverse gap-2 sm:my-5 md:gap-6">
