@@ -4,11 +4,12 @@ import {
   getRelatedProducts,
 } from "@/actions/actions";
 import Newsletter from "@/components/newsletter/newsletter";
-import ProductPage from "@/components/product/product-page";
+const ProductPage = dynamic(() => import("@/components/product/product-page"));
 import { getQueryClient } from "@/lib/query";
 import { IProduct } from "@/types/product-types";
 import { HydrationBoundary } from "@tanstack/react-query";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 // product metadata for SEO
 export async function generateMetadata({

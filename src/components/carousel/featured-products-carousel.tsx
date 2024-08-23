@@ -1,7 +1,6 @@
 "use client";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/autoplay";
 import { IProduct } from "@/types/product-types";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";

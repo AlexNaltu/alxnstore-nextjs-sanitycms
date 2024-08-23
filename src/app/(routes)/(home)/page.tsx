@@ -11,16 +11,24 @@ import {
   getRandomProducts,
 } from "@/actions/actions";
 import { IPlaylist, IProduct } from "@/types/product-types";
-import FeaturedCarousel from "@/components/carousel/featured-products-carousel";
-import RandomProductsCarousel from "@/components/carousel/random-product-carousel";
 import BoxReveal from "@/components/magicui/box-reveal";
+import dynamic from "next/dynamic";
+const RandomProductsCarousel = dynamic(
+  () => import("@/components/carousel/random-product-carousel")
+);
+const FeaturedCarousel = dynamic(
+  () => import("@/components/carousel/featured-products-carousel")
+);
 
 export const revalidate = 1000;
 
 export default async function Home() {
-  const featuredProducts = await getFeaturedPlaylists();
-  const newArrivalsProducts = await getNewArrivalsPlaylists();
-  const randomProducts = await getRandomProducts();
+  const [featuredProducts, newArrivalsProducts, randomProducts] =
+    await Promise.all([
+      getFeaturedPlaylists(),
+      getNewArrivalsPlaylists(),
+      getRandomProducts(),
+    ]);
 
   return (
     <>

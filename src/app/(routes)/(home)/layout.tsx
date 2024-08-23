@@ -38,7 +38,7 @@ export default function RootLayout({
             <QueryProvider>
               <TopCarousel />
               <Navbar />
-              <main className="flex-1">{children}</main>
+              <main>{children}</main>
               <Footer />
             </QueryProvider>
           </ReduxProvider>
