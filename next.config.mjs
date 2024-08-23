@@ -10,6 +10,16 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: [
+      "swiper/react",
+      "react-responsive-carousel",
+      "react-paginate",
+      "react-hot-toast",
+      "react-awesome-reveal",
+      "@emailjs/browser",
+    ],
+  },
 };
 
 const bundleAnalyzer = withBundleAnalyzer({
