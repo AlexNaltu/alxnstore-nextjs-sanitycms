@@ -35,7 +35,7 @@ const CartInfo = () => {
             height={50}
           />
           <h3 className="font-sans font-semibold text-sm  sm:text-base">
-            Est. Delivery Time: 5-10 Days
+            Est. Delivery Time: 3-10 Days
           </h3>
         </div>
       </div>

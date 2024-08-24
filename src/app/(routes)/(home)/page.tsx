@@ -13,6 +13,8 @@ import {
 import { IPlaylist, IProduct } from "@/types/product-types";
 import BoxReveal from "@/components/magicui/box-reveal";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 const RandomProductsCarousel = dynamic(
   () => import("@/components/carousel/random-product-carousel")
 );
@@ -55,16 +57,19 @@ export default async function Home() {
             Free shipping for orders over 80$
           </h1>
         </BoxReveal>
-        <div className="my-3 sm:my-6 lg:my-10">
-          {featuredProducts.map((item: IPlaylist) => (
-            <section key={item._id}>
-              <h1 className="uppercase mb-4 font-bold tracking-tighter text-2xl lg:text-3xl text-white">
-                {item.title}
-              </h1>
-              <FeaturedCarousel products={item.products} />
-            </section>
-          ))}
-        </div>
+        <Suspense fallback={<p>Loading Post..</p>}>
+          <div className="my-3 sm:my-6 lg:my-10">
+            {featuredProducts.map((item: IPlaylist) => (
+              <section key={item._id}>
+                <h1 className="uppercase mb-4 font-bold tracking-tighter text-2xl lg:text-3xl text-white">
+                  {item.title}
+                </h1>
+                <FeaturedCarousel products={item.products} />
+              </section>
+            ))}
+          </div>
+        </Suspense>
+
         <CodeBanner />
         <div className="my-3 sm:my-6 lg:my-10">
           {newArrivalsProducts.map((item: IPlaylist) => (
