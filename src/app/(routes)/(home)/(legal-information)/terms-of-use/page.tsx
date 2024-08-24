@@ -17,14 +17,12 @@ const TermsOfUsePage = () => {
 
       <ul className="mt-5 text- text-slate-200 list-disc">
         <li>Company Name: AlxnBusiness</li>
-        <li>Email: alxnbusiness1@gmail.com</li>
-        <li>Phone: +49 1515 7491907</li>
-        <li>
-          Address: Erdmarsgasse 4, Kaltenlengsfeld, Meiningen, 36452, Germany
-        </li>
+        <li>Email: alxnbusines@gmail.com</li>
+        <li>Phone: +49 1534 7445714</li>
+        <li>Address: Germany</li>
       </ul>
     </div>
   );
 };
 
-export default TermsOfUsePage
+export default TermsOfUsePage;
