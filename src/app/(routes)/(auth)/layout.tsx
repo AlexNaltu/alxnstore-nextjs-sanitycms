@@ -1,4 +1,5 @@
 import Clerk from "@/providers/clerk-provider";
+import "../(home)/globals.css";
 
 export const metadata = {
   title: "Next.js",

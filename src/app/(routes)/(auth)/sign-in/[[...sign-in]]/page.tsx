@@ -1,9 +1,8 @@
 import { SignIn } from "@clerk/nextjs";
-import React from "react";
 
 const SignInPage = () => {
   return (
-    <div>
+    <div className="flex justify-center my-10">
       <SignIn forceRedirectUrl={"/cart"} />
     </div>
   );

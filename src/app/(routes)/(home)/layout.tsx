@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Maven_Pro, Paytone_One } from "next/font/google";
+import { Maven_Pro } from "next/font/google";
 import "./globals.css";
 import TopCarousel from "@/components/carousel/top-carousel";
 import Navbar from "@/components/navbar/navbar";
