@@ -122,8 +122,8 @@ const ProductPage = ({ product }: Props) => {
                 {product?.name}
               </h1>
               <Link
-                href="/cart"
-                className="font-sans text-sm underline md:text-base"
+                href="#details"
+                className="font-sans text-sm underline md:text-base scroll-smooth"
               >
                 More product details{" "}
               </Link>
@@ -232,7 +232,7 @@ const ProductPage = ({ product }: Props) => {
           </div>
         </div>
       </div>
-      <Accordion type="single" collapsible>
+      <Accordion type="single" collapsible id="details">
         <AccordionItem value="item-1" className="my-4">
           <AccordionTrigger className="decoration-0 text-lg min-[470px]:text-xl sm:text-2xl md:text-4xl">
             Detailed Information
