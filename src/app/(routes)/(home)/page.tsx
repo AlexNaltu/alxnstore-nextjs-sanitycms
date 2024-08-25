@@ -22,7 +22,7 @@ const FeaturedCarousel = dynamic(
   () => import("@/components/carousel/featured-products-carousel")
 );
 
-export const revalidate = 1000;
+export const revalidate = 86400;
 
 export default async function Home() {
   const [featuredProducts, newArrivalsProducts, randomProducts] =
@@ -35,18 +35,18 @@ export default async function Home() {
   return (
     <>
       <div className="max-w-[1600px] mx-auto px-1">
-        <div className="lg:flex">
+        <div className="lg:flex justify-between ">
           <HeroCarousel />
 
-          <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1 w-full">
+          <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1  ">
             {categoryItems.map((category) => (
               <Link href={category.href} key={category.href}>
                 <Image
                   src={category.image}
                   alt={category.href}
-                  width={650}
-                  height={650}
-                  className="min-[1024px]:aspect-video object-cover object-center"
+                  width={1000}
+                  height={1000}
+                  className="min-[1024px]:aspect-video object-cover object-center "
                 />
               </Link>
             ))}

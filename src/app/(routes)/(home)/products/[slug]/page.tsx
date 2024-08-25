@@ -11,6 +11,8 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
+export const revalidate = 86400;
+
 // product metadata for SEO
 export async function generateMetadata({
   params,

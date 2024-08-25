@@ -7,6 +7,8 @@ import { getQueryClient } from "@/lib/query";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import React from "react";
 
+export const revalidate = 86400;
+
 export default async function ProductSPage() {
   // queryClient from react-query
   const queryClient = getQueryClient();
