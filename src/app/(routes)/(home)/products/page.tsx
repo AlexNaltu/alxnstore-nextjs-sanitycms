@@ -5,7 +5,7 @@ import ProductsGrid from "@/components/product/products-grid";
 import Searchbar from "@/components/searchbar/searchbar";
 import { getQueryClient } from "@/lib/query";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const revalidate = 86400;
 
@@ -25,13 +25,15 @@ export default async function ProductSPage() {
     <>
       <div className="max-w-[1400px] mx-auto px-1 mt-3">
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <div className="lg:hidden">
-            <Searchbar />
-          </div>
-          <div className="lg:flex gap-3 min-[1100px]:gap-10">
-            <ProductCategories />
-            <ProductsGrid />
-          </div>
+          <Suspense fallback={<p>Loading...</p>}>
+            <div className="lg:hidden">
+              <Searchbar />
+            </div>
+            <div className="lg:flex gap-3 min-[1100px]:gap-10">
+              <ProductCategories />
+              <ProductsGrid />
+            </div>
+          </Suspense>
         </HydrationBoundary>
         <div className="my-6 px-2 text-white">
           <h1 className="tracking-tighter text-2xl min-[470px]:text-3xl font-black md:text-4xl lg:text-5xl">
