@@ -11,7 +11,6 @@ import {
 import shoppingReducer from "./shoppingSlice";
 import { WebStorage } from "redux-persist";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
-import logger from "redux-logger";
 
 // Function to create a WebStorage object based on the environment
 export function createPersistStore(): WebStorage {
@@ -55,7 +54,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    }),
 });
 
 // Create the persistor
