@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-black mt-10 lg:mt-20 site_footer w-full">
       <Link href="/" className=" max-w-[200px] cursor-pointer">
         <Image
-          src="/logo.svg"
+          src="/logo2.svg"
           alt="logo"
           width={200}
           height={200}

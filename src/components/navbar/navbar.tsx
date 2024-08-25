@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="flex gap-4 lg:py-3 items-center">
           <Link href="/">
             <Image
-              src="/logo.svg"
+              src="/logo1.svg"
               alt="logo"
               width={200}
               height={150}
