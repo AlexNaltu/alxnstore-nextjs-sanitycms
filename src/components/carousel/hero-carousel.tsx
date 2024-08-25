@@ -64,7 +64,7 @@ const HeroCarousel = () => {
         showThumbs={false}
         showStatus={false}
         showArrows={false}
-        className="hidden min-[850px]:inline-flex lg:max-w-[860px] min-[1050px]:max-w-[900px] min-[1100px]:max-w-[950px] min-[1170px]:max-w-[1000px] min-[1250px]:max-w-[1090px] min-[1300px]:max-w-[1140px] min-[1380px]:max-w-[1400px]"
+        className="hidden min-[850px]:inline-flex "
       >
         {heroCarouselImagesLg.map((item, index) => (
           <Image

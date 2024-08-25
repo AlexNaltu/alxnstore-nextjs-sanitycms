@@ -2,7 +2,8 @@
 
 import { groq } from "next-sanity";
 import { client } from "../../sanity/lib/client";
-import { Category, IProduct } from "@/types/product-types";
+import { IProduct } from "@/types/product-types";
+import { revalidatePath } from "next/cache";
 
 interface SlugProps {
   slug: string;
