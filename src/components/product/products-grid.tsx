@@ -58,22 +58,22 @@ const ProductsGrid = () => {
   if (filtered && data)
     return (
       <div>
-          <div className="grid grid-cols-2 mb-2 mt-7 gap-2 min-[470px]:grid-cols-3 min-[950px]:grid-cols-4">
-            {paginatedData.map((product: IProduct) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-          <ReactPaginate
-            pageCount={Math.ceil(paginatedData.length / itemsPerPage)}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={2}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            nextLabel={<MdKeyboardArrowRight size={25} />}
-            previousLabel={<MdKeyboardArrowLeft size={25} />}
-            breakLabel={"..."}
-          />
+        <div className="grid grid-cols-2 mb-2 mt-7 gap-2 min-[470px]:grid-cols-3 min-[950px]:grid-cols-4">
+          {paginatedData.map((product: IProduct) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+        <ReactPaginate
+          pageCount={Math.ceil(paginatedData.length / itemsPerPage)}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+          nextLabel={<MdKeyboardArrowRight size={25} />}
+          previousLabel={<MdKeyboardArrowLeft size={25} />}
+          breakLabel={"..."}
+        />
       </div>
     );
 };

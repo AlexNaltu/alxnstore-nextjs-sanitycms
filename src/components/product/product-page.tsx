@@ -28,25 +28,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
-import { getRelatedProducts } from "@/actions/actions";
+import { getProductBySlug, getRelatedProducts } from "@/actions/actions";
 
 interface Props {
-  product: IProduct;
+  slug: string;
+  relatedPosts: IProduct[];
 }
 
-const ProductPage = ({ product }: Props) => {
-  const [quantity, setQuantity] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+const ProductPage = ({ slug, relatedPosts }: Props) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["relatedProduct"],
+    queryKey: ["product"],
     queryFn: async () => {
-      //@ts-ignore
-      const relatedProduct = await getRelatedProducts(product.category[0]);
-      return relatedProduct;
+      const product = await getProductBySlug({ slug });
+      return product;
     },
   });
+
+  const [quantity, setQuantity] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState(data?.variants[0]);
+  const [selectedImage, setSelectedImage] = useState(data?.images[0]);
+  const [selectedColor, setSelectedColor] = useState(data?.colors[0]);
 
   const handleVariantChange = (variant: IVariants) => {
     setSelectedVariant(variant);
@@ -59,17 +60,19 @@ const ProductPage = ({ product }: Props) => {
   const dispatch = useDispatch();
 
   const item = {
-    id: product?._id,
-    name: product?.name,
-    thumbnail: product?.thumbnail,
+    size: selectedVariant?.size,
+    id: data?._id,
+    name: data?.name,
+    thumbnail: data?.thumbnail,
     quantity: quantity,
     price: selectedVariant?.price,
-    url: `/products/${product?.slug}`,
-    size: selectedVariant?.size,
-    color_: selectedColor.color,
-    color_Id: selectedColor.colorId,
+    url: `/products/${data?.slug}`,
+    color_: selectedColor!.color,
+    color_Id: selectedColor!.colorId,
     variant_id: selectedVariant?.variant_id,
   };
+
+  console.log(item);
 
   //get color style
   function getColorStyle(color: IColors) {
@@ -92,7 +95,7 @@ const ProductPage = ({ product }: Props) => {
         <div className="sm:flex sm:flex-row-reverse gap-2 md:max-w-[700px]">
           <div className="max-w-[500px]  mx-auto">
             <Image
-              src={selectedImage}
+              src={selectedImage!}
               alt="/"
               width={1000}
               height={1000}
@@ -101,7 +104,7 @@ const ProductPage = ({ product }: Props) => {
             />
           </div>
           <div className="flex justify-center gap-1 min-[470px]:gap-4 min-[470px]:max-w-sm sm:flex-col sm:max-w-[150px] lg:self-start lg:pt-7 mx-auto">
-            {product?.images.map((image, i) => (
+            {data?.images.map((image, i) => (
               <div key={i}>
                 <Image
                   src={image}
@@ -119,7 +122,7 @@ const ProductPage = ({ product }: Props) => {
           <div className="min-[470px]:flex justify-between lg:flex-col gap-24">
             <div>
               <h1 className="font-bold uppercase text-xl sm:text-2xl md:text-4xl ">
-                {product?.name}
+                {data?.name}
               </h1>
               <Link
                 href="#details"
@@ -132,7 +135,7 @@ const ProductPage = ({ product }: Props) => {
               <p className="sm:text-lg md:text-2xl flex items-center gap-2">
                 <span className="font-sans text-xs  sm:text-sm">price</span>
                 {!selectedVariant
-                  ? formatPriceInEUR(product?.variants[0].price!)
+                  ? formatPriceInEUR(data?.variants[0].price!)
                   : formatPriceInEUR(selectedVariant.price)}
               </p>
               <p className="font-sans text-xs underline md:text-base">
@@ -144,7 +147,7 @@ const ProductPage = ({ product }: Props) => {
           </div>
           <div className="flex flex-col gap-2 md:gap-4">
             <div className="flex gap-2 md:gap-4">
-              {product?.variants.map((variant, i) => (
+              {data?.variants.map((variant, i) => (
                 <div key={i}>
                   {selectedVariant === variant ? (
                     <Button
@@ -165,13 +168,13 @@ const ProductPage = ({ product }: Props) => {
               ))}
             </div>
             <div className="flex gap-2 md:gap-4">
-              {product.colors.map((color) => (
+              {data?.colors.map((color) => (
                 <div key={color.colorId}>
                   <button
                     className={cn(
                       "h-8 w-8 rounded-full",
                       getColorStyle(color),
-                      selectedColor.colorId === color.colorId
+                      selectedColor!.colorId === color.colorId
                         ? "border-2 border-black"
                         : ""
                     )}
@@ -205,7 +208,7 @@ const ProductPage = ({ product }: Props) => {
               className="uppercase text-white rounded-sm flex items-center gap-4 bg-green-600 w-full hover:bg-green-900"
               onClick={() =>
                 dispatch(addToCart(item)) &&
-                toast.success(`${product.name} added to cart!`)
+                toast.success(`${data?.name} added to cart!`)
               }
             >
               <FaShoppingCart size={20} /> Add to Cart
@@ -227,7 +230,7 @@ const ProductPage = ({ product }: Props) => {
             </div>
             <div className="mt-4 flex flex-col gap-3 max-w-sm">
               <p className="text-xl md:text-2xl">Description:</p>
-              <p className="text-sm md:text-base">{product?.description}</p>
+              <p className="text-sm md:text-base">{data?.description}</p>
             </div>
           </div>
         </div>
@@ -277,7 +280,7 @@ const ProductPage = ({ product }: Props) => {
             },
           }}
         >
-          {data.map((product: IProduct) => (
+          {relatedPosts.map((product: IProduct) => (
             <SwiperSlide key={product._id}>
               <Card className="rounded-none border-none custom-shadow mb-2">
                 <CardHeader>

@@ -7,7 +7,7 @@ import Newsletter from "@/components/newsletter/newsletter";
 const ProductPage = dynamic(() => import("@/components/product/product-page"));
 import { getQueryClient } from "@/lib/query";
 import { IProduct } from "@/types/product-types";
-import { HydrationBoundary } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
@@ -59,23 +59,26 @@ export async function generateStaticParams() {
 }
 
 const Product = async ({ params }: { params: { slug: string } }) => {
-  const product: IProduct = await getProductBySlug({ slug: params.slug });
-
-  // prefetch related products
   const queryClient = getQueryClient();
-  queryClient.prefetchQuery({
-    queryKey: ["relatedProduct"],
+
+  await queryClient.prefetchQuery({
+    queryKey: ["product"],
     queryFn: async () => {
-      //@ts-ignore
-      const relatedProducts = await getRelatedProducts();
-      return relatedProducts;
+      const product = await getProductBySlug({ slug: params.slug });
+      return product;
     },
   });
 
+  const product = queryClient.getQueryData<IProduct>(["product"]);
+
+  const relatedCategory = product!.category[0];
+  //@ts-ignore
+  const relatedPosts = await getRelatedProducts(relatedCategory);
+
   return (
     <div>
-      <HydrationBoundary>
-        <ProductPage product={product} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ProductPage slug={params.slug} relatedPosts={relatedPosts} />
       </HydrationBoundary>
       <Newsletter />
     </div>
