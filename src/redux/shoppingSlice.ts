@@ -62,10 +62,10 @@ export const shoppingSlice = createSlice({
     deleteProduct: (state, action) => {
       state.productData = state.productData.filter(
         (item: IProduct) =>
-          item.size &&
-          item.color_Id &&
-          item.variant_id &&
-          item.color_ !== action.payload
+          item._id !== action.payload._id || // Check ID
+          item.size !== action.payload.size || // Check Size
+          item.color_ !== action.payload.color_ || // Check Color
+          item.variant_id !== action.payload.variant_id
       );
       return state;
     },

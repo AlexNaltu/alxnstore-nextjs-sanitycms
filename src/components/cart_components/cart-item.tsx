@@ -31,11 +31,8 @@ const CartItem = () => {
     <>
       <div className="px-1 flex flex-col sm:px-3">
         <div className="flex flex-col gap-8 w-full my-3">
-          {productData.map((item: IProduct) => (
-            <div
-              key={`${item._id}`}
-              className="flex font-sans text-slate-500 gap-1 "
-            >
+          {productData.map((item: IProduct, i) => (
+            <div key={i} className="flex font-sans text-slate-500 gap-1 ">
               <Link href={item.url}>
                 <Image
                   src={item.thumbnail}
@@ -52,14 +49,8 @@ const CartItem = () => {
                   </h1>
                   <GoTrash
                     onClick={() =>
-                      dispatch(
-                        deleteProduct(
-                          item.size &&
-                            item.color_Id &&
-                            item.variant_id &&
-                            item.color_
-                        )
-                      ) && toast.error("Item removed from cart")
+                      dispatch(deleteProduct(item)) &&
+                      toast.error("Item removed from cart")
                     }
                     className="text-xl text-white cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 w-fit"
                     size={25}
