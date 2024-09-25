@@ -40,13 +40,17 @@ export default async function Home() {
 
           <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1  ">
             {categoryItems.map((category) => (
-              <Link href={category.href} key={category.href}>
+              <Link
+                href={category.href}
+                key={category.href}
+                className="relative h-[150px]"
+              >
                 <Image
                   src={category.image}
                   alt={category.href}
-                  width={1000}
-                  height={1000}
-                  className="min-[1024px]:aspect-video object-cover object-center "
+                  fill
+                  sizes="(max-width: 768px)"
+                  className="object-cover"
                 />
               </Link>
             ))}
