@@ -35,15 +35,15 @@ export default async function Home() {
   return (
     <>
       <div className="max-w-[1600px] mx-auto px-1">
-        <div className="lg:flex justify-between ">
+        <div className="lg:flex justify-between">
           <HeroCarousel />
 
-          <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1  ">
+          <div className="grid grid-cols-2 gap-2 my-3 min-[470px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-1">
             {categoryItems.map((category) => (
               <Link
                 href={category.href}
                 key={category.href}
-                className="relative h-[150px]"
+                className="relative h-[100px] lg:min-w-[150px] max-w-[300px] xl:min-w-[220px] lg:h-[110px]"
               >
                 <Image
                   src={category.image}
